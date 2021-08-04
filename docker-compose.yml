@@ -5,10 +5,6 @@ volumes:
   database-data:
   worker-data:
 
-networks:
-  scitizen:
-    driver: bridge
-
 services:
   agent:
     container_name: agent
@@ -16,8 +12,7 @@ services:
     depends_on:
       - api
       - worker
-    networks:
-      - scitizen
+    network_mode: host
     restart: always
 
   api:
@@ -27,8 +22,7 @@ services:
       - database
     ports:
       - 8080:8080
-    networks:
-      - scitizen
+    network_mode: host
     restart: always
 
   app:
@@ -38,30 +32,36 @@ services:
       - api
     ports:
       - 80:80
-    networks:
-      - scitizen
+    network_mode: host
     restart: always
 
   browser:
-    image: balenablocks/browser
-    
+    container_name: browser
+    image: balenablocks/browser:latest
+    environment:
+      - KIOSK=1
+    privileged: true
+    network_mode: host
+    restart: always
+
   database:
     container_name: database
     build: ./database
     ports:
       - 5432:5432
-    networks:
-      - scitizen
     volumes:
       - database-data:/var/lib/postgresql/data
+    network_mode: host
     restart: always
 
   hostname:
-    image: balenablocks/hostname
+    container_name: hostname
+    image: balenablocks/hostname:latest
     environment:
       SET_HOSTNAME: scitizen
     labels:
       io.balena.features.supervisor-api: 1
+    network_mode: host
     restart: no
 
   worker:
@@ -69,8 +69,7 @@ services:
     build: ./worker
     ports:
       - 31416:31416
-    networks:
-      - scitizen
     volumes:
       - worker-data:/var/lib/boinc
+    network_mode: host
     restart: always

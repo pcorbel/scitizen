@@ -34,7 +34,7 @@ tasks_ns.add_resource(Tasks, "")
 # config SQLAlchemy
 app.config[
     "SQLALCHEMY_DATABASE_URI"
-] = "postgresql://scitizen:scitizen@database:5432/scitizen"
+] = "postgresql://scitizen:scitizen@localhost:5432/scitizen"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["PROPAGATE_EXCEPTIONS"] = True
 db.init_app(app)

@@ -30,7 +30,7 @@ class Operator:
         sync_projects: Sync the user's enrolment on Scitizen projects.
     """
 
-    host: str = "worker"
+    host: str = "localhost"
     port: int = 31416
     queries_dir: str = str((Path(__file__).parent / "queries").resolve())
     sock: socket.socket = socket.socket()

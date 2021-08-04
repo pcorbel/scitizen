@@ -29,7 +29,7 @@ class Operator:
 
     base_url: str = ""
     protocol: str = "http"
-    host: str = "api"
+    host: str = "localhost"
     port: int = 8080
     session: requests.Session = requests.Session()
 
