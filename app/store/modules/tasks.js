@@ -1,5 +1,5 @@
 import { make } from 'vuex-pathify'
-import moment from 'moment'
+import moment from 'moment-timezone'
 import prettyBytes from 'pretty-bytes'
 
 function state () {
@@ -69,6 +69,7 @@ const getters = {
     })
 
     // Humanize Time
+    moment.tz.setDefault("UTC")
     tasks = tasks.map((task) => {
       if (task.received_at) {
         task.received_at_humanized = moment(task.received_at).format(
