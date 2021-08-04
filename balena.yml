@@ -19,6 +19,8 @@ post-provisioning: >-
   When the download is completed the application will start. You can 
   go to http://scitizen.local to access Scitizen web interface.
 
+  **Documentation**
+
   For detailed instructions on how Scitizen is working, please check out
   the [documentation](https://pcorbel.github.io/scitizen/).
 assets:

@@ -48,13 +48,17 @@ Depending on your internet connection, it could take up to 30 minutes to fully b
 
 ## ✨ Usage
 
-* Choose the projects you want to contribute to
+### [scitizen.local/projects](http://scitizen.local/projects)
+
+Choose the projects you want to contribute to
+
 ![Projects](docs/assets/scitizen-local-1.png)
 
-* Check the tasks that you contributed to
-![Tasks](docs/assets/scitizen-local-2.png)
+### [scitizen.local/tasks](http://scitizen.local/tasks)
 
-* Let your Raspberry Pi make the world a better place 🌱
+Check the tasks that you contributed to
+
+![Tasks](docs/assets/scitizen-local-2.png)
 
 ## 🙏 Acknowledgement
 
