@@ -6,12 +6,21 @@ description: >-
 fleetcta: Helping humanity made easy
 post-provisioning: >-
   ## Usage instructions
-  **Application download** Once you power up your device you'll need to allow
+
+  **Application download**
+  
+  Once you power up your device you'll need to allow
   some time for it to download the application, this typically takes 5-10
   minutes but it can take more depending on your internet connection and what
   device you are using.
-  **Usage** When the download is completed the application will start. You can 
-  go to http://scitizen.local to access Scitizen control panel.
+
+  **Usage**
+  
+  When the download is completed the application will start. You can 
+  go to http://scitizen.local to access Scitizen web interface.
+
+  For detailed instructions on how Scitizen is working, please check out
+  the [documentation](https://pcorbel.github.io/scitizen/).
 assets:
   repository:
     type: blob.asset

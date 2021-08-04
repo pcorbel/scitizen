@@ -22,7 +22,7 @@ So let's start contributing 💪!
 
 1️⃣ Download the latest image of Scitizen on Balena
 
-[![balena deploy button](https://www.balena.io/deploy.svg)](https://hub.balena.io/pcorbel/scitizen)
+[![balena deploy button](https://www.balena.io/deploy.svg)](https://hub.balena.io/gh_pcorbel/scitizen)
 
 2️⃣ Download and install Balena Etcher
 
