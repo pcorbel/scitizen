@@ -1,0 +1,22 @@
+FROM python:3.9.6-slim-buster
+
+# setup application working directory
+WORKDIR /app
+
+# prepare dependencies files
+COPY *.txt /tmp
+
+# install system dependencies
+RUN apt-get update \
+ && xargs apt-get install --no-install-recommends --assume-yes --quiet < /tmp/packages.txt \
+ && apt-get clean \
+ && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
+
+# setup boinc config
+COPY config/* /var/lib/boinc-client/
+RUN chown -R boinc:boinc /var/lib/boinc-client/
+
+# setup entrypoint
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+ENTRYPOINT ["/app/entrypoint.sh"]

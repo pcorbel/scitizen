@@ -1,0 +1,32 @@
+FROM python:3.9.6-slim-buster
+
+# setup application working directory
+WORKDIR /app
+
+# setup environment variables
+ENV PYTHONUNBUFFERED 1
+ENV WAITFOR_VERSION v2.1.3
+
+# prepare dependencies files
+COPY *.txt /tmp/
+
+# install system dependencies
+RUN apt-get update \
+ && xargs apt-get install --no-install-recommends --assume-yes --quiet < /tmp/packages.txt \
+ && xargs apt-get install --no-install-recommends --assume-yes --quiet < /tmp/build-packages.txt \
+ # install wait-for 
+ && wget --quiet https://raw.githubusercontent.com/eficode/wait-for/${WAITFOR_VERSION}/wait-for \
+ # install python dependencies
+ && pip install --no-cache-dir -r /tmp/requirements.txt \
+ # clean up
+ && xargs apt-get --yes --purge --auto-remove remove < /tmp/build-packages.txt \
+ && apt-get clean \
+ && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
+
+# install app
+COPY app/ /app/
+
+# setup entrypoint
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+ENTRYPOINT ["/app/entrypoint.sh"]

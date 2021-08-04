@@ -1,0 +1,6 @@
+{
+    "driver": "postgres",
+    "ignore-errors": [
+        "unmatched-parentheses"
+    ]
+}

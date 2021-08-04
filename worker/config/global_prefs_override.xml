@@ -1,0 +1,21 @@
+<global_preferences>
+  <!-- always run -->
+  <run_if_user_active>1</run_if_user_active>
+  <run_gpu_if_user_active>1</run_gpu_if_user_active>
+
+  <!-- max amount of ram in % -->
+  <ram_max_used_busy_pct>80.000000</ram_max_used_busy_pct>
+  <ram_max_used_idle_pct>80.000000</ram_max_used_idle_pct>
+
+  <!-- max amount of virtual memory in % -->
+  <vm_max_used_pct>80.000000</vm_max_used_pct>
+
+  <!-- max amount of disk usage in % -->
+  <disk_max_used_pct>80.000000</disk_max_used_pct>
+
+  <!-- max amount of CPU cores in % -->
+  <max_ncpus_pct>100.000000</max_ncpus_pct>
+
+  <!-- max amount of CPU load in % -->
+  <cpu_usage_limit>80.000000</cpu_usage_limit>
+</global_preferences>

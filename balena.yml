@@ -1,0 +1,29 @@
+---
+name: Scitizen
+type: sw.application
+description: >-
+  Help scientific research for the benefit of mankind and humanity
+fleetcta: Helping humanity made easy
+post-provisioning: >-
+  ## Usage instructions
+  **Application download** Once you power up your device you'll need to allow
+  some time for it to download the application, this typically takes 5-10
+  minutes but it can take more depending on your internet connection and what
+  device you are using.
+  **Usage** When the download is completed the application will start. You can 
+  go to http://scitizen.local to access Scitizen control panel.
+assets:
+  repository:
+    type: blob.asset
+    data:
+      url: https://github.com/pcorbel/scitizen
+  logo:
+    type: blob.asset
+    data:
+      url: >-
+        https://raw.githubusercontent.com/pcorbel/scitizen/main/docs/assets/logo.png
+data:
+  defaultDeviceType: raspberrypi4-64
+  supportedDeviceTypes:
+    - raspberrypi3-64
+    - raspberrypi4-64

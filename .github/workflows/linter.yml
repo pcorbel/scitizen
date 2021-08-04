@@ -1,0 +1,25 @@
+---
+name: Lint Code Base
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  lint-codebase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+
+      - name: Lint Code Base
+        uses: docker://ghcr.io/github/super-linter:slim-v4
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          VALIDATE_SQL: false # until sql-lint is fixed
+          SUPPRESS_POSSUM: true
