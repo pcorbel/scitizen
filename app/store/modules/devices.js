@@ -27,10 +27,9 @@ const getters = {
 
     // Humanize device
     devices = devices.map((device) => {
-      device.integer_speed_humanized = prettyBytes(device.integer_speed).slice(
-        0,
-        -1
-      )
+      device.integer_speed_humanized = prettyBytes(
+        device.integer_speed
+      ).slice(0, -1)
       device.floating_point_speed_humanized = prettyBytes(
         device.floating_point_speed
       ).slice(0, -1)
@@ -41,6 +40,10 @@ const getters = {
     })
 
     return devices
+  },
+
+  device (state) {
+    return state.items.length === 0 ? {} : state.items[0]
   }
 }
 

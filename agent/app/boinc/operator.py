@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import os
 import socket
 from dataclasses import dataclass
 from hashlib import md5
@@ -281,14 +282,18 @@ class Operator:
             result = {}
 
         # add static data relative to the hardware
-        host.update({"id": result.get("host_cpid")})
+        host.update({"id": os.getenv("BALENA_DEVICE_UUID")})
+        host.update({"name": os.getenv("BALENA_DEVICE_NAME_AT_INIT")})
+        host.update({"type": os.getenv("BALENA_DEVICE_TYPE")})
+        host.update({"arch": os.getenv("BALENA_DEVICE_ARCH")})
+        host.update({"operating_system_version": os.getenv("BALENA_HOST_OS_VERSION")})
+
+        host.update({"cpid": result.get("host_cpid")})
         host.update({"cpu_type": result.get("p_model")})
         host.update({"cpu_architecture": result.get("p_vendor")})
         host.update({"cpu_features": result.get("p_features").split()})
         host.update({"processor_count": int(result.get("p_ncpus"))})
         host.update({"coprocessor_count": int(result.get("n_usable_coprocs"))})
-        host.update({"operating_system_version": result.get("os_version")})
-        host.update({"operating_system_name": result.get("os_name")})
         host.update({"product_name": result.get("product_name")})
 
         # add data relative to the software

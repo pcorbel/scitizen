@@ -15,13 +15,15 @@ class DeviceModel(db.Model):
     id = db.Column(db.Text, primary_key=True)
 
     # setup the columns / properties
+    name = db.Column(db.Text)
+    type = db.Column(db.Text)
+    arch = db.Column(db.Text)
+    cpid = db.Column(db.Text)
     cpu_type = db.Column(db.Text)
     cpu_architecture = db.Column(db.Text)
     cpu_features = db.Column(ARRAY(db.Text))
     processor_count = db.Column(db.Integer)
     coprocessor_count = db.Column(db.Integer)
-    operating_system_version = db.Column(db.Text)
-    operating_system_name = db.Column(db.Text)
     product_name = db.Column(db.Text)
     floating_point_speed = db.Column(db.Float)
     integer_speed = db.Column(db.Float)
@@ -29,6 +31,7 @@ class DeviceModel(db.Model):
     free_disk_space = db.Column(db.Float)
     swap_space = db.Column(db.Float)
     domain_name = db.Column(db.Text)
+    operating_system_version = db.Column(db.Text)
     boinc_version = db.Column(db.Text)
     scitizen_version = db.Column(db.Text)
 
