@@ -12,6 +12,10 @@
             />
           </v-app-bar-nav-icon>
           <v-spacer />
+          <!-- Device Name -->
+          <nuxt-link to="/devices" class="white--text">
+            <strong> {{ this.device.name }} </strong>
+          </nuxt-link>
         </v-row>
       </v-container>
     </v-app-bar>
@@ -46,7 +50,19 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-
     </v-navigation-drawer>
   </nav>
 </template>
+
+<script>
+export default {
+  async fetch() {
+    await this.$store.dispatch('devices/fetch')
+  },
+  computed: {
+    device() {
+      return this.$store.get('devices/device')
+    },
+  },
+}
+</script>
