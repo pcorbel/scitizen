@@ -35,15 +35,6 @@ services:
     network_mode: host
     restart: always
 
-  browser:
-    container_name: browser
-    image: balenablocks/browser:latest
-    environment:
-      - KIOSK=1
-    privileged: true
-    network_mode: host
-    restart: always
-
   database:
     container_name: database
     build: ./database
