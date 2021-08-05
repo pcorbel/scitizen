@@ -67,7 +67,7 @@ class Operator:
             self.session.post(url=f"{self.base_url}/task/{task.get('id')}", json=task)
 
     def get_projects(self) -> List[str]:
-        """Send tasks to the Scitizen API.
+        """Fetch projects from the Scitizen API.
 
         It is used to fetch the projects configuration coming from
         the Scitizen API in order to sync them locally.
