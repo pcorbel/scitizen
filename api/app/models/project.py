@@ -28,6 +28,7 @@ class ProjectModel(db.Model):
     summary = db.Column(db.Text)
     url = db.Column(db.Text, unique=True)
     web_url = db.Column(db.Text)
+    weak_authenticator = db.Column(db.Text)
 
     # setup the pseudo-columns (metadata related to the record)
     _created_at = db.Column(db.DateTime, default=datetime.utcnow)
