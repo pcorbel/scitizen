@@ -69,7 +69,7 @@ const getters = {
     })
 
     // Humanize Time
-    moment.tz.setDefault("UTC")
+    moment.tz.setDefault('UTC')
     tasks = tasks.map((task) => {
       if (task.received_at) {
         task.received_at_humanized = moment(task.received_at).format(
