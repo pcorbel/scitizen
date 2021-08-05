@@ -3,7 +3,7 @@ name: Lint Code Base
 
 on:
   push:
-    branches: [main]
+    branches: [develop]
 
 jobs:
   lint-codebase:
