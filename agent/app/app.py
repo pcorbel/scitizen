@@ -6,7 +6,6 @@ from dataclasses import dataclass
 
 import schedule
 import yaml  # type: ignore
-
 from balena.operator import Operator as Balena
 from boinc.operator import Operator as Boinc
 from scitizen.operator import Operator as Scitizen
