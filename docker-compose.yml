@@ -12,6 +12,8 @@ services:
     depends_on:
       - api
       - worker
+    labels:
+      io.balena.features.supervisor-api: 1  
     network_mode: host
     restart: always
 
@@ -44,16 +46,6 @@ services:
       - database-data:/var/lib/postgresql/data
     network_mode: host
     restart: always
-
-  hostname:
-    container_name: hostname
-    image: balenablocks/hostname:latest
-    environment:
-      SET_HOSTNAME: scitizen
-    labels:
-      io.balena.features.supervisor-api: 1
-    network_mode: host
-    restart: no
 
   worker:
     container_name: worker
