@@ -1,4 +1,4 @@
-FROM python:3.9.6-slim-buster
+FROM balenalib/%%BALENA_ARCH%%-debian-python:3.9.5-buster-run
 
 # setup application working directory
 WORKDIR /app
