@@ -22,4 +22,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
           VALIDATE_SQL: false # until sql-lint is fixed
+          VALIDATE_SQLFLUFF: false # until sqlfluff config file is supported
           SUPPRESS_POSSUM: true
