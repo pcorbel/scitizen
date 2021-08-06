@@ -12,7 +12,7 @@ module.exports = {
           {
             files: ['balena.yml'],
             from: 'version: .*',
-            to: 'version: v${nextRelease.version}', // eslint-disable-line no-template-curly-in-string
+            to: 'version: ${nextRelease.version}', // eslint-disable-line no-template-curly-in-string
             results: [
               {
                 file: 'balena.yml',
