@@ -1,53 +1,22 @@
 ---
 version: 2
 updates:
-  # actions
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: daily
+
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: daily
 
-  # app
-  - package-ecosystem: docker
-    directory: /app
-    schedule:
-      interval: daily
-
   - package-ecosystem: npm
-    directory: /app
-    schedule:
-      interval: daily
-
-  # api
-  - package-ecosystem: docker
-    directory: /api
+    directory: /
     schedule:
       interval: daily
 
   - package-ecosystem: pip
-    directory: /api
-    schedule:
-      interval: daily
-
-  # database
-  - package-ecosystem: docker
-    directory: /database
-    schedule:
-      interval: daily
-
-  # agent
-  - package-ecosystem: docker
-    directory: /agent
-    schedule:
-      interval: daily
-
-  - package-ecosystem: pip
-    directory: /agent
-    schedule:
-      interval: daily
-
-  # worker
-  - package-ecosystem: docker
-    directory: /worker
+    directory: /
     schedule:
       interval: daily
