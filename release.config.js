@@ -1,6 +1,6 @@
 module.exports = {
   branches: 'main',
-  tagFormat: 'v${version}',
+  tagFormat: 'v${version}', // eslint-disable-line no-template-curly-in-string
   plugins: [
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',
@@ -12,7 +12,7 @@ module.exports = {
           {
             files: ['balena.yml'],
             from: 'version: .*',
-            to: 'version: v${nextRelease.version}',
+            to: 'version: v${nextRelease.version}', // eslint-disable-line no-template-curly-in-string
             results: [
               {
                 file: 'balena.yml',
