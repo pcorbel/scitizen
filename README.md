@@ -14,7 +14,7 @@ So let's start contributing 💪!
 
 ## ✅ Prerequisites
 
-* A [Raspberry Pi](https://www.raspberrypi.org/) 3/4 device (versions 1/2 are currently not supported)
+* A [Raspberry Pi](https://www.raspberrypi.org/) 3/4 device (1 GB RAM at least is recommended)
 * A micro-SD card (32 GB at least is recommended)
 * An ethernet cable and/or a Wi-Fi network name and password
 
@@ -50,12 +50,16 @@ So let's start contributing 💪!
 
 ![Flash it tutorial](docs/assets/flash-it.gif)
 
-4️⃣ Insert your micro-SD card into your Raspberry Pi, and power it up.
-Depending on your internet connection, it could take up to 30 minutes to fully boot.
+4️⃣ Insert your micro-SD card into your Raspberry Pi, and power it up 🔋.
+Depending on your internet connection, it could take up to 30 minutes to fully boot ⏳.
 
 ![Power it up tutorial](docs/assets/power-it-up.gif)
 
-5️⃣ On a computer on the same network (i.e. Modem / Wi-Fi) than the Raspberry Pi, open in your browser the URL `http://scitizen.local`.
+5️⃣ On a computer 💻 on the same network (i.e. Modem / Wi-Fi) than the Raspberry Pi, open in your browser the URL `http://scitizen.local`.
+
+5️⃣ bis: You have more than one device to share with the world 🌎? No problem 🤗.
+
+Just go to `http://scitizen-2.local`, `http://scitizen-3.local`, etc... to see the contribution of all your devices.
 
 ## ✨ Usage
 
