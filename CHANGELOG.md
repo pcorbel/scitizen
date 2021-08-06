@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/pcorbel/scitizen/compare/v1.0.0...v1.1.0) (2021-08-06)
+
+
+### Bug Fixes
+
+* :bookmark: update release tag for balena ([9fa03ed](https://github.com/pcorbel/scitizen/commit/9fa03edabe7530d4b78bcb52a76ffd7548c9e981))
+
+
+### Features
+
+* :wrench: add CODEOWNERS ([a9a5e9b](https://github.com/pcorbel/scitizen/commit/a9a5e9bf43fd37e9246135e0dd4f4e0d69da1365))
+
 # 1.0.0 (2021-08-06)
 
 
