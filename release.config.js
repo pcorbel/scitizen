@@ -1,32 +1,32 @@
 module.exports = {
-  branches: "main",
-  tagFormat: "v${version}",
+  branches: 'main',
+  tagFormat: 'v${version}',
   plugins: [
-    "@semantic-release/commit-analyzer",
-    "@semantic-release/release-notes-generator",
-    "@semantic-release/changelog",
+    '@semantic-release/commit-analyzer',
+    '@semantic-release/release-notes-generator',
+    '@semantic-release/changelog',
     [
-      "@google/semantic-release-replace-plugin",
+      '@google/semantic-release-replace-plugin',
       {
         replacements: [
           {
-            files: ["balena.yml"],
-            from: "version: .*",
-            to: "version: v${nextRelease.version}",
+            files: ['balena.yml'],
+            from: 'version: .*',
+            to: 'version: v${nextRelease.version}',
             results: [
               {
-                file: "balena.yml",
+                file: 'balena.yml',
                 hasChanged: true,
                 numMatches: 1,
-                numReplacements: 1,
-              },
+                numReplacements: 1
+              }
             ],
-            countMatches: true,
-          },
-        ],
-      },
+            countMatches: true
+          }
+        ]
+      }
     ],
-    ["@semantic-release/git", { assets: ["CHANGELOG.md", "balena.yml"] }],
-    "@semantic-release/github",
-  ],
-};
+    ['@semantic-release/git', { assets: ['CHANGELOG.md', 'balena.yml'] }],
+    '@semantic-release/github'
+  ]
+}
