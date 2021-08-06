@@ -2,8 +2,7 @@
 
 import os
 from dataclasses import dataclass
-from typing import Any, Dict, List
-
+from typing import Optional
 import requests
 
 
@@ -28,10 +27,10 @@ class Operator:
         set_hostname: Set the hostname and reboot.
     """
 
-    supervisor_address: str = os.getenv("BALENA_SUPERVISOR_ADDRESS")
+    supervisor_address: Optional[str] = os.getenv("BALENA_SUPERVISOR_ADDRESS")
     host_config_endpoint: str = "/v1/device/host-config?apikey="
     reboot_endpoint: str = "/v1/reboot?apikey="
-    supervisor_api_key: str = os.getenv("BALENA_SUPERVISOR_API_KEY")
+    supervisor_api_key: Optional[str] = os.getenv("BALENA_SUPERVISOR_API_KEY")
     host_config_url: str = ""
     reboot_url: str = ""
     session: requests.Session = requests.Session()
@@ -47,7 +46,7 @@ class Operator:
             f"{self.supervisor_address}{self.reboot_endpoint}{self.supervisor_api_key}"
         )
 
-    def get_hostname(self) -> None:
+    def get_hostname(self) -> Optional[str]:
         """Fetch hostname from the Supervisor API.
 
         It is used to fetch the current hostname coming from
@@ -82,4 +81,4 @@ class Operator:
             self.session.patch(url=self.host_config_url, json=data, headers=headers)
             self.session.post(url=self.reboot_url, headers=headers)
         else:
-            print(f"hostname already set to {hostname}. skipping...")
+            print(f"hostname already set to {hostname}. skipping... ")
