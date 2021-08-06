@@ -20,9 +20,20 @@ So let's start contributing 💪!
 
 ## 🪄 Installation
 
-1️⃣ Download the latest image of Scitizen on Balena
+1️⃣ Download the latest image of Scitizen on Balena Hub
 
 [![balena deploy button](https://www.balena.io/deploy.svg)](https://hub.balena.io/gh_pcorbel/scitizen)
+
+![Download it tutorial](docs/assets/balena-hub.gif)
+* Click on the `Get started` button.
+* Select your device type.
+* If you want to connect your device to the Internet via Wi-Fi:
+  * Click on the `Wifi + Ethernet` option.
+  * Enter the name of your Wi-Fi network in the `Wifi SSID` text area.
+  * Enter the password of your Wi-Fi network in the `Wifi passphrase` text area.
+* Click on the `Download BalenaOS` button
+
+> 🔐: Your Wi-Fi credentials will never be stored outside the image of Scitizen you will download.
 
 2️⃣ Download and install Balena Etcher
 
@@ -59,6 +70,12 @@ Choose the projects you want to contribute to
 Check the tasks that you contributed to
 
 ![Tasks](docs/assets/scitizen-local-2.png)
+
+### [scitizen.local/devices](http://scitizen.local/devices)
+
+Check data on your device
+
+![Devices](docs/assets/scitizen-local-3.png)
 
 ## 🙏 Acknowledgement
 
