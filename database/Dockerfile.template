@@ -1,0 +1,20 @@
+FROM postgres:13.3-buster
+
+# setup global environment settings
+ENV POSTGRES_DB scitizen
+ENV POSTGRES_USER scitizen
+ENV POSTGRES_PASSWORD scitizen
+ENV PGDATA /var/lib/postgresql/data
+
+# prepare dependencies files
+COPY *.txt /tmp
+
+# install system dependencies
+RUN apt-get update \
+ && xargs apt-get install --no-install-recommends --assume-yes --quiet < /tmp/packages.txt \
+ # clean up
+ && apt-get clean \
+ && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
+
+# install custom start-up scripts
+COPY init/* /docker-entrypoint-initdb.d/

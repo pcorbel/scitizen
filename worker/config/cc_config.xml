@@ -1,0 +1,5 @@
+<cc_config>
+  <options>
+    <allow_remote_gui_rpc>1</allow_remote_gui_rpc>
+  </options>
+</cc_config>

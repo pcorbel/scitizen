@@ -1,0 +1,371 @@
+---
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  start:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+
+  docker-build-and-push-agent:
+    runs-on: ubuntu-latest
+    needs: start
+    env:
+      SCITIZEN_SERVICE: agent
+      BALENA_ARCH: aarch64
+      BALENA_PLATFORMS: linux/arm64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1.10.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ github.token }}
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v1.5.1
+
+      - name: Setup Docker QEMU
+        uses: docker/setup-qemu-action@v1.2.0
+
+      - name: Build and push image
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: ghcr.io/${{ github.repository }}/${{ env.SCITIZEN_SERVICE }}:latest
+          context: ${{ env.SCITIZEN_SERVICE }}
+          file: ${{ env.SCITIZEN_SERVICE }}/Dockerfile.template
+          platforms: ${{ env.BALENA_PLATFORMS }}
+          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}/${{ env.SCITIZEN_SERVICE }}:latest
+          cache-to: type=inline
+          build-args: BALENA_ARCH=${{ env.BALENA_ARCH }}
+
+  docker-build-and-push-api:
+    runs-on: ubuntu-latest
+    needs: start
+    env:
+      SCITIZEN_SERVICE: api
+      BALENA_ARCH: aarch64
+      BALENA_PLATFORMS: linux/arm64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1.10.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ github.token }}
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v1.5.1
+
+      - name: Setup Docker QEMU
+        uses: docker/setup-qemu-action@v1.2.0
+
+      - name: Build and push image
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: ghcr.io/${{ github.repository }}/${{ env.SCITIZEN_SERVICE }}:latest
+          context: ${{ env.SCITIZEN_SERVICE }}
+          file: ${{ env.SCITIZEN_SERVICE }}/Dockerfile.template
+          platforms: ${{ env.BALENA_PLATFORMS }}
+          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}/${{ env.SCITIZEN_SERVICE }}:latest
+          cache-to: type=inline
+          build-args: BALENA_ARCH=${{ env.BALENA_ARCH }}
+
+  docker-build-and-push-app:
+    runs-on: ubuntu-latest
+    needs: start
+    env:
+      SCITIZEN_SERVICE: app
+      BALENA_ARCH: aarch64
+      BALENA_PLATFORMS: linux/arm64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1.10.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ github.token }}
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v1.5.1
+
+      - name: Setup Docker QEMU
+        uses: docker/setup-qemu-action@v1.2.0
+
+      - name: Build and push image
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: ghcr.io/${{ github.repository }}/${{ env.SCITIZEN_SERVICE }}:latest
+          context: ${{ env.SCITIZEN_SERVICE }}
+          file: ${{ env.SCITIZEN_SERVICE }}/Dockerfile.template
+          platforms: ${{ env.BALENA_PLATFORMS }}
+          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}/${{ env.SCITIZEN_SERVICE }}:latest
+          cache-to: type=inline
+          build-args: BALENA_ARCH=${{ env.BALENA_ARCH }}
+
+  docker-build-and-push-database:
+    runs-on: ubuntu-latest
+    needs: start
+    env:
+      SCITIZEN_SERVICE: database
+      BALENA_ARCH: aarch64
+      BALENA_PLATFORMS: linux/arm64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1.10.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ github.token }}
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v1.5.1
+
+      - name: Setup Docker QEMU
+        uses: docker/setup-qemu-action@v1.2.0
+
+      - name: Build and push image
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: ghcr.io/${{ github.repository }}/${{ env.SCITIZEN_SERVICE }}:latest
+          context: ${{ env.SCITIZEN_SERVICE }}
+          file: ${{ env.SCITIZEN_SERVICE }}/Dockerfile.template
+          platforms: ${{ env.BALENA_PLATFORMS }}
+          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}/${{ env.SCITIZEN_SERVICE }}:latest
+          cache-to: type=inline
+          build-args: BALENA_ARCH=${{ env.BALENA_ARCH }}
+  
+  docker-build-and-push-wifi:
+    runs-on: ubuntu-latest
+    needs: start
+    env:
+      SCITIZEN_SERVICE: wifi
+      BALENA_ARCH: aarch64
+      BALENA_PLATFORMS: linux/arm64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1.10.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ github.token }}
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v1.5.1
+
+      - name: Setup Docker QEMU
+        uses: docker/setup-qemu-action@v1.2.0
+
+      - name: Build and push image
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: ghcr.io/${{ github.repository }}/${{ env.SCITIZEN_SERVICE }}:latest
+          context: ${{ env.SCITIZEN_SERVICE }}
+          file: ${{ env.SCITIZEN_SERVICE }}/Dockerfile.template
+          platforms: ${{ env.BALENA_PLATFORMS }}
+          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}/${{ env.SCITIZEN_SERVICE }}:latest
+          cache-to: type=inline
+          build-args: BALENA_ARCH=${{ env.BALENA_ARCH }}
+
+  docker-build-and-push-worker:
+    runs-on: ubuntu-latest
+    needs: start
+    env:
+      SCITIZEN_SERVICE: worker
+      BALENA_ARCH: aarch64
+      BALENA_PLATFORMS: linux/arm64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1.10.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ github.token }}
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v1.5.1
+
+      - name: Setup Docker QEMU
+        uses: docker/setup-qemu-action@v1.2.0
+
+      - name: Build and push image
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: ghcr.io/${{ github.repository }}/${{ env.SCITIZEN_SERVICE }}:latest
+          context: ${{ env.SCITIZEN_SERVICE }}
+          file: ${{ env.SCITIZEN_SERVICE }}/Dockerfile.template
+          platforms: ${{ env.BALENA_PLATFORMS }}
+          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}/${{ env.SCITIZEN_SERVICE }}:latest
+          cache-to: type=inline
+          build-args: BALENA_ARCH=${{ env.BALENA_ARCH }}
+
+  balena-deploy:
+    runs-on: ubuntu-latest
+    needs: 
+      - docker-build-and-push-agent
+      - docker-build-and-push-api
+      - docker-build-and-push-app
+      - docker-build-and-push-database
+      - docker-build-and-push-wifi
+      - docker-build-and-push-worker
+    env:
+      BALENA_CLI_VERSION: v12.47.0
+      BALENA_FLEET_SLUG: gh_pcorbel/scitizen
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+
+      - name: Login to GitHub Container Registry
+        run: |
+          echo "ghcr.io": >> ./registry-secrets.yml
+          echo "  username: ${{ github.repository_owner }}" >> ./registry-secrets.yml
+          echo "  password: ${{ github.token }}" >> ./registry-secrets.yml
+
+      - name: Download, install & setup balena-cli
+        run: |
+          wget https://github.com/balena-io/balena-cli/releases/download/${{ env.BALENA_CLI_VERSION }}/balena-cli-${{ env.BALENA_CLI_VERSION }}-linux-x64-standalone.zip
+          unzip balena-cli-${{ env.BALENA_CLI_VERSION }}-linux-x64-standalone.zip
+          ./balena-cli/balena login --token ${{ secrets.BALENA_API_TOKEN }}
+
+      - name: Deploy images to Balena
+        run: ./balena-cli/balena deploy ${{ env.BALENA_FLEET_SLUG }} --registry-secrets ./registry-secrets.yml
+
+  balena-preload-raspberrypi4-64:
+    runs-on: ubuntu-latest
+    needs: balena-deploy
+    env:
+      BALENA_DEVICE_TYPE: raspberrypi4-64
+      BALENA_CLI_VERSION: v12.47.0
+      BALENA_FLEET_SLUG: gh_pcorbel/scitizen
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+  
+      - name: Download, install & setup balena-cli
+        run: |
+          wget https://github.com/balena-io/balena-cli/releases/download/${{ env.BALENA_CLI_VERSION }}/balena-cli-${{ env.BALENA_CLI_VERSION }}-linux-x64-standalone.zip
+          unzip balena-cli-${{ env.BALENA_CLI_VERSION }}-linux-x64-standalone.zip
+          ./balena-cli/balena login --token ${{ secrets.BALENA_API_TOKEN }}
+
+      - name: Fetch latest BalenaOS version
+        run: echo BALENA_OS_VERSION=$(./balena-cli/balena os versions ${{ env.BALENA_DEVICE_TYPE }} | grep recommended | sed 's/ (recommended)//g') >> ${GITHUB_ENV}
+  
+      - name: Download image
+        run: ./balena-cli/balena os download ${{ env.BALENA_DEVICE_TYPE }} --output scitizen-os-${{ env.BALENA_DEVICE_TYPE }}.img --version ${{ env.BALENA_OS_VERSION }}
+  
+      - name: Configure image
+        run: ./balena-cli/balena os configure scitizen-os-${{ env.BALENA_DEVICE_TYPE }}.img --fleet ${{ env.BALENA_FLEET_SLUG }} --device-type ${{ env.BALENA_DEVICE_TYPE }} --config-network ethernet --version ${{ env.BALENA_OS_VERSION }}
+  
+      - name: Preload image
+        run: ./balena-cli/balena preload scitizen-os-${{ env.BALENA_DEVICE_TYPE }}.img --fleet ${{ env.BALENA_FLEET_SLUG }} --commit latest
+  
+      - name: Zip image
+        run: zip scitizen-os-${{ env.BALENA_DEVICE_TYPE }}.img.zip scitizen-os-${{ env.BALENA_DEVICE_TYPE }}.img
+      
+      - name: Cache image
+        uses: actions/cache@v2.1.6
+        with:
+          path: scitizen-os-${{ env.BALENA_DEVICE_TYPE }}.img.zip
+          key: scitizen-os-${{ env.BALENA_DEVICE_TYPE }}.img.zip
+
+  balena-preload-raspberrypi3-64:
+    runs-on: ubuntu-latest
+    needs: balena-deploy
+    env:
+      BALENA_DEVICE_TYPE: raspberrypi3-64
+      BALENA_CLI_VERSION: v12.47.0
+      BALENA_FLEET_SLUG: gh_pcorbel/scitizen
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+  
+      - name: Download, install & setup balena-cli
+        run: |
+          wget https://github.com/balena-io/balena-cli/releases/download/${{ env.BALENA_CLI_VERSION }}/balena-cli-${{ env.BALENA_CLI_VERSION }}-linux-x64-standalone.zip
+          unzip balena-cli-${{ env.BALENA_CLI_VERSION }}-linux-x64-standalone.zip
+          ./balena-cli/balena login --token ${{ secrets.BALENA_API_TOKEN }}
+
+      - name: Fetch latest BalenaOS version
+        run: echo BALENA_OS_VERSION=$(./balena-cli/balena os versions ${{ env.BALENA_DEVICE_TYPE }} | grep recommended | sed 's/ (recommended)//g') >> ${GITHUB_ENV}
+  
+      - name: Download image
+        run: ./balena-cli/balena os download ${{ env.BALENA_DEVICE_TYPE }} --output scitizen-os-${{ env.BALENA_DEVICE_TYPE }}.img --version ${{ env.BALENA_OS_VERSION }}
+  
+      - name: Configure image
+        run: ./balena-cli/balena os configure scitizen-os-${{ env.BALENA_DEVICE_TYPE }}.img --fleet ${{ env.BALENA_FLEET_SLUG }} --device-type ${{ env.BALENA_DEVICE_TYPE }} --config-network ethernet --version ${{ env.BALENA_OS_VERSION }}
+  
+      - name: Preload image
+        run: ./balena-cli/balena preload scitizen-os-${{ env.BALENA_DEVICE_TYPE }}.img --fleet ${{ env.BALENA_FLEET_SLUG }} --commit latest
+  
+      - name: Zip image
+        run: zip scitizen-os-${{ env.BALENA_DEVICE_TYPE }}.img.zip scitizen-os-${{ env.BALENA_DEVICE_TYPE }}.img
+  
+      - name: Cache image
+        uses: actions/cache@v2.1.6
+        with:
+          path: scitizen-os-${{ env.BALENA_DEVICE_TYPE }}.img.zip
+          key: scitizen-os-${{ env.BALENA_DEVICE_TYPE }}.img.zip
+
+  semantic-release:
+    runs-on: ubuntu-latest
+    needs:
+      - balena-preload-raspberrypi3-64
+      - balena-preload-raspberrypi4-64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+  
+      - name: Cache image
+        uses: actions/cache@v2.1.6
+        with:
+          path: scitizen-os-raspberrypi4-64.img.zip
+          key: scitizen-os-raspberrypi4-64.img.zip
+  
+      - name: Cache image
+        uses: actions/cache@v2.1.6
+        with:
+          path: scitizen-os-raspberrypi3-64.img.zip
+          key: scitizen-os-raspberrypi3-64.img.zip
+
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v2.5.4
+        with:
+          semantic_version: 17.4.4
+          extra_plugins: |
+            @google/semantic-release-replace-plugin@1.0.2
+            @semantic-release/changelog@5.0.1
+            @semantic-release/git@9.0.0
+            @semantic-release/github@7.2.3
+        env:
+          GITHUB_TOKEN: ${{ github.token }}

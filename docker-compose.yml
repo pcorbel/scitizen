@@ -1,0 +1,62 @@
+---
+version: "2"
+
+volumes:
+  database-data:
+  worker-data:
+
+services:
+  agent:
+    image: ghcr.io/pcorbel/scitizen/agent:latest
+    depends_on:
+      - api
+      - worker
+    labels:
+      io.balena.features.supervisor-api: 1  
+    network_mode: host
+    restart: always
+
+  api:
+    image: ghcr.io/pcorbel/scitizen/api:latest
+    depends_on:
+      - database
+    ports:
+      - 8080:8080
+    network_mode: host
+    restart: always
+
+  app:
+    image: ghcr.io/pcorbel/scitizen/app:latest
+    depends_on:
+      - api
+    ports:
+      - 80:80
+    network_mode: host
+    restart: always
+
+  database:
+    image: ghcr.io/pcorbel/scitizen/database:latest
+    ports:
+      - 5432:5432
+    volumes:
+      - database-data:/var/lib/postgresql/data
+    network_mode: host
+    restart: always
+
+  worker:
+    image: ghcr.io/pcorbel/scitizen/worker:latest
+    ports:
+      - 31416:31416
+    volumes:
+      - worker-data:/var/lib/boinc
+    network_mode: host
+    restart: always
+
+  wifi:
+    image: ghcr.io/pcorbel/scitizen/wifi:latest
+    labels:
+      io.balena.features.dbus: 1
+      io.balena.features.firmware: 1
+    privileged: true
+    network_mode: host
+    restart: always

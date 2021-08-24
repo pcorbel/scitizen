@@ -1,0 +1,3 @@
+.v-btn--active.no-active::before {
+  opacity: 0 !important;
+}

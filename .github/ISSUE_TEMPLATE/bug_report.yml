@@ -1,0 +1,69 @@
+---
+name: 🐞 Bug Report
+description: File a bug/issue
+title: "[bug] <title>"
+labels: [bug]
+assignees: pcorbel
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time to file a bug report! Please fill out this form as completely as possible.
+  - type: markdown
+    attributes:
+      value: If you leave out sections there is a high likelihood that we won't be able to help you.
+  - type: markdown
+    attributes:
+      value: Please first verify if your issue does not already exists. If not, go ahead and create it.
+  - type: input
+    attributes:
+      label: What device are you using?
+      description: "For example: raspberrypi4"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: What version of Scitizen are you using?
+      description: "For example: 1.0.0"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: What is your device name?
+      description: "For example: lingering-fire"
+    validations:
+      required: false
+  - type: input
+    attributes:
+      label: What browser are you using?
+      description: "For example: Chrome"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Describe the bug.
+      description: A concise description of what you're experiencing.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Expected behavior
+      description: A concise description of what you expected to happen.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Steps to reproduce
+      description: |
+        Steps to reproduce the behavior. Please provide a clear description that always end in raising the bug.
+        Screenshots can be provided in the issue body below.
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: Before posting the issue, go through the steps you've written down to make sure the steps provided are detailed and clear.
+  - type: markdown
+    attributes:
+      value: Contributors should be able to follow the steps provided in order to reproduce the bug.
+  - type: markdown
+    attributes:
+      value: These steps are used to reproduce the bug, fix it, and ensure the same issue does not happen again. Thanks in advance!
