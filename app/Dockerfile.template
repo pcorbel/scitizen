@@ -1,13 +1,11 @@
-# fetch architecture specific base image
-ARG BALENA_ARCH
-FROM balenalib/${BALENA_ARCH}-debian-node:16.6.2-stretch-run
+FROM balenalib/%%BALENA_ARCH%%-debian-node:16.6.2-stretch-run
 
 WORKDIR /app
 
 COPY ./package.json /app/package.json
 COPY ./yarn.lock /app/yarn.lock
-RUN yarn install --pure-lockfile
+RUN yarn install --pure-lockfile --network-timeout 3600000
 
 COPY . /app/
-RUN yarn generate
+RUN yarn build
 CMD yarn start

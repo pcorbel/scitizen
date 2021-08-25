@@ -1,6 +1,5 @@
 # fetch architecture specific base image
-ARG BALENA_ARCH
-FROM balenalib/${BALENA_ARCH}-debian-python:3.9.5-buster-run
+FROM balenalib/%%BALENA_ARCH%%-debian-python:3.9.5-buster-run
 
 # setup application working directory
 WORKDIR /app

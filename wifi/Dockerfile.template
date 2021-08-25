@@ -1,13 +1,9 @@
-# fetch architecture specific base image
-ARG BALENA_ARCH
-FROM balenalib/${BALENA_ARCH}-debian-python:3.9.5-buster-run
+FROM balenalib/%%BALENA_ARCH%%-debian-python:3.9.5-buster-run
 
 # setup application working directory
 WORKDIR /app
 
 # setup environment variables
-ARG BALENA_ARCH
-ENV BALENA_ARCH ${BALENA_ARCH}
 ENV WFC_VERSION 4.4.6
 
 # prepare dependencies files
@@ -20,7 +16,7 @@ RUN apt-get update \
  && apt-get clean \
  && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/* \
  # install wifi-connect
- && curl -Ls "https://github.com/balena-io/wifi-connect/releases/download/v${WFC_VERSION}/wifi-connect-v${WFC_VERSION}-linux-${BALENA_ARCH}.tar.gz" \
+ && curl -Ls "https://github.com/balena-io/wifi-connect/releases/download/v${WFC_VERSION}/wifi-connect-v${WFC_VERSION}-linux-%%BALENA_ARCH%%.tar.gz" \
   | tar -xvz -C  /app/
 
 # setup entrypoint
