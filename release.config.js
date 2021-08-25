@@ -32,11 +32,11 @@ module.exports = {
       {
         assets: [
           {
-            name: 'Scitizen OS (Raspberry Pi 4)',
+            name: 'scitizen-os-raspberrypi4-64.img.zip',
             path: 'scitizen-os-raspberrypi4-64.img.zip'
           },
           {
-            name: 'Scitizen OS (Raspberry Pi 3)',
+            name: 'scitizen-os-raspberrypi3-64.img.zip',
             path: 'scitizen-os-raspberrypi3-64.img.zip'
           }
         ]
