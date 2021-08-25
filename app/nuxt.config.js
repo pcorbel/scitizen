@@ -2,6 +2,12 @@ export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
+  // Tell Nuxt to resolve a host address, which is accessible to connections outside of the host machine
+  server: {
+    port: 80,
+    host: '0.0.0.0',
+  },
+
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
