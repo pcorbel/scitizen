@@ -10,6 +10,7 @@ ENV WFC_VERSION 4.4.6
 COPY *.txt /tmp/
 
 # install system dependencies
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get update \
  && xargs apt-get install --no-install-recommends --assume-yes --quiet < /tmp/packages.txt \
  # clean up

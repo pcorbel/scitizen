@@ -1,3 +1,4 @@
 {
-    "threshold": 5
+    "threshold": 5,
+    "ignore": ["**/workflows/*.yml"]
 }

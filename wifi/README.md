@@ -1,4 +1,4 @@
-# 🌐 WiFi 
+# 🌐 WiFi
 
 ![Wifi Schema](../docs/assets/wifi.png)
 
