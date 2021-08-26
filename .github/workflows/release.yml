@@ -51,7 +51,7 @@ jobs:
           ./balena-cli/balena login --token ${{ secrets.BALENA_API_TOKEN }}
 
       - name: Fetch latest BalenaOS version
-        run: echo BALENA_OS_VERSION=$(./balena-cli/balena os versions ${{ env.BALENA_DEVICE_TYPE }} | grep recommended | sed 's/ (recommended)//g') >> ${GITHUB_ENV}
+        run: echo BALENA_OS_VERSION="$(./balena-cli/balena os versions ${{ env.BALENA_DEVICE_TYPE }} | grep recommended | sed 's/ (recommended)//g')" >> "${GITHUB_ENV}"
   
       - name: Download image
         run: ./balena-cli/balena os download ${{ env.BALENA_DEVICE_TYPE }} --output scitizen-os-${{ env.BALENA_DEVICE_TYPE }}.img --version ${{ env.BALENA_OS_VERSION }}
@@ -89,7 +89,7 @@ jobs:
           ./balena-cli/balena login --token ${{ secrets.BALENA_API_TOKEN }}
 
       - name: Fetch latest BalenaOS version
-        run: echo BALENA_OS_VERSION=$(./balena-cli/balena os versions ${{ env.BALENA_DEVICE_TYPE }} | grep recommended | sed 's/ (recommended)//g') >> ${GITHUB_ENV}
+        run: echo BALENA_OS_VERSION="$(./balena-cli/balena os versions ${{ env.BALENA_DEVICE_TYPE }} | grep recommended | sed 's/ (recommended)//g')" >> "${GITHUB_ENV}"
   
       - name: Download image
         run: ./balena-cli/balena os download ${{ env.BALENA_DEVICE_TYPE }} --output scitizen-os-${{ env.BALENA_DEVICE_TYPE }}.img --version ${{ env.BALENA_OS_VERSION }}

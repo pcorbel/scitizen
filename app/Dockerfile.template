@@ -1,11 +1,23 @@
 FROM balenalib/%%BALENA_ARCH%%-debian-node:16.6.2-stretch-run
 
+# setup application working directory
 WORKDIR /app
 
+# prepare dependencies files
 COPY ./package.json /app/package.json
 COPY ./yarn.lock /app/yarn.lock
-RUN yarn install --pure-lockfile --network-timeout 3600000
 
+# install Javascript dependencies
+RUN yarn install --pure-lockfile --network-timeout 3600000 \
+ && yarn cache clean
+
+# install app
 COPY . /app/
-RUN yarn build
-CMD yarn start
+
+# build app
+RUN yarn generate
+
+# setup entrypoint
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+ENTRYPOINT ["/app/entrypoint.sh"]

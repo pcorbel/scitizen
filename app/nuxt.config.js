@@ -5,7 +5,7 @@ export default {
   // Tell Nuxt to resolve a host address, which is accessible to connections outside of the host machine
   server: {
     port: 80,
-    host: '0.0.0.0',
+    host: '0.0.0.0'
   },
 
   // Target: https://go.nuxtjs.dev/config-target
