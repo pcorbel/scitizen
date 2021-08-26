@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/pcorbel/scitizen/compare/v1.0.0...v1.1.0) (2021-08-26)
+
+
+### Features
+
+* **worker:** 🔊 add boinc-client logs to worker ([950e56e](https://github.com/pcorbel/scitizen/commit/950e56e20ec06953bef5127a02ad36626b7b4965))
+
 # 1.0.0 (2021-08-25)
 
 
