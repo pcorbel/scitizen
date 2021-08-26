@@ -73,6 +73,12 @@ Check data on your device
 
 ![Devices](docs/assets/scitizen-local-3.png)
 
+## 🤝 Contributing
+
+Thanks for helping Scitizen reaching more people and being more stable and user friendly ✨.
+
+To contribute, please see our [contribution guidelines](CONTRIBUTING.md).
+
 ## 🙏 Acknowledgement
 
 First 🥇, we wanted to thanks the Raspberry Pi Foundations for creating devices as awesome as the Raspberry Pis.
