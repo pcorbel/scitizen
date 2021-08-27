@@ -38,4 +38,4 @@ data:
   supportedDeviceTypes:
     - raspberrypi3-64
     - raspberrypi4-64
-version: 1.1.2
+version: 1.1.3

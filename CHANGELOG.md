@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/pcorbel/scitizen/compare/v1.1.2...v1.1.3) (2021-08-27)
+
+
+### Bug Fixes
+
+* **worker:** :ambulance: fix new worker not being able to boot ([006ca36](https://github.com/pcorbel/scitizen/commit/006ca361d5b129e319286f6fb3516d8957ef93cf))
+
 ## [1.1.2](https://github.com/pcorbel/scitizen/compare/v1.1.1...v1.1.2) (2021-08-27)
 
 
