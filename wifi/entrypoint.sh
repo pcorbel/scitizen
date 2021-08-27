@@ -3,11 +3,11 @@
 export DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
 export PORTAL_SSID=Scitizen
 export PORTAL_LISTENING_PORT=8000
-export FREQ=120
+export FREQ=300
 
 while true; do
   echo "Checking internet connectivity ..."
-  wget --spider --no-check-certificate 1.1.1.1 > /dev/null 2>&1
+  wget --quiet --spider --no-check-certificate https://www.google.com
   RESULT=$?
   if [ ${RESULT} -eq 0 ]; then
     echo "Your device is already connected to the internet."
