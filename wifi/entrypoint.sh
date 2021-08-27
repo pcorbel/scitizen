@@ -1,9 +1,6 @@
 #!/bin/sh
 
-export DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
-export PORTAL_SSID=Scitizen
-export PORTAL_LISTENING_PORT=8000
-export FREQ=300
+sleep 15
 
 while true; do
   echo "Checking internet connectivity ..."
@@ -11,12 +8,13 @@ while true; do
   RESULT=$?
   if [ ${RESULT} -eq 0 ]; then
     echo "Your device is already connected to the internet."
-    echo "Skipping setting up Wifi-Connect Access Point. Will check again in ${FREQ} seconds"
+    echo "Skipping setting up wifi-connect access point."
+    echo "Will check again in ${CHECK_FREQ} seconds."
   else
     echo "Your device is not connected to the internet."
-    echo "Starting up Wifi-Connect."
-    echo "Connect to the Access Point and configure the SSID and Passphrase for the network to connect to."
+    echo "Starting up wifi-connect."
+    echo "Connect to the access point and configure the SSID and passphrase for the network to connect to."
     /app/wifi-connect -u /app/ui
   fi
-  sleep ${FREQ}
+  sleep "${CHECK_FREQ}"
 done

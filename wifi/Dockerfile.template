@@ -5,6 +5,10 @@ WORKDIR /app
 
 # setup environment variables
 ENV WFC_VERSION 4.4.6
+ENV DBUS_SYSTEM_BUS_ADDRESS unix:path=/host/run/dbus/system_bus_socket
+ENV PORTAL_SSID Scitizen
+ENV PORTAL_LISTENING_PORT 8000
+ENV CHECK_FREQ 300
 
 # prepare dependencies files
 COPY *.txt /tmp/
