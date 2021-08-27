@@ -1,4 +1,4 @@
-FROM postgres:13.3-buster
+FROM postgres:13.4-buster
 
 # setup global environment settings
 ENV POSTGRES_DB scitizen
