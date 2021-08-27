@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/pcorbel/scitizen/compare/v1.1.0...v1.1.1) (2021-08-27)
+
+
+### Bug Fixes
+
+* **wifi:** :green_heart: fix CI build ([3cb4e79](https://github.com/pcorbel/scitizen/commit/3cb4e790bb6c5d8484545c3640a6c4f608579ff4))
+
 # [1.1.0](https://github.com/pcorbel/scitizen/compare/v1.0.0...v1.1.0) (2021-08-26)
 
 
