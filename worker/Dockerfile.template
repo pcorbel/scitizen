@@ -14,7 +14,8 @@ RUN apt-get update \
 
 # setup boinc config
 COPY config/* /var/lib/boinc-client/
-RUN chown -R boinc:boinc /var/lib/boinc-client/
+RUN touch /var/lib/boinc-client/stdoutdae.txt \
+ && chown -R boinc:boinc /var/lib/boinc-client/
 
 # setup entrypoint
 COPY entrypoint.sh /app/entrypoint.sh
