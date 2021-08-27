@@ -10,15 +10,16 @@ ENV WFC_VERSION 4.4.6
 COPY *.txt /tmp/
 
 # install system dependencies
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get update \
  && xargs apt-get install --no-install-recommends --assume-yes --quiet < /tmp/packages.txt \
- # clean up
- && apt-get clean \
- && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/* \
+ && xargs apt-get install --no-install-recommends --assume-yes --quiet < /tmp/build-packages.txt \
  # install wifi-connect
- && curl -Ls "https://github.com/balena-io/wifi-connect/releases/download/v${WFC_VERSION}/wifi-connect-v${WFC_VERSION}-linux-%%BALENA_ARCH%%.tar.gz" \
-  | tar -xvz -C  /app/
+ && wget --quiet https://github.com/balena-io/wifi-connect/releases/download/v${WFC_VERSION}/wifi-connect-v${WFC_VERSION}-linux-%%BALENA_ARCH%%.tar.gz \
+ && tar -xvzf wifi-connect-v${WFC_VERSION}-linux-%%BALENA_ARCH%%.tar.gz \
+ # clean up
+ && xargs apt-get --yes --purge --auto-remove remove < /tmp/build-packages.txt \
+ && apt-get clean \
+ && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
 
 # setup entrypoint
 COPY entrypoint.sh /app/entrypoint.sh
