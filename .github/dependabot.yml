@@ -2,21 +2,81 @@
 version: 2
 updates:
   - package-ecosystem: docker
-    directory: /
+    directory: /agent
     schedule:
       interval: daily
+    commit-message:
+      prefix: chore
+      include: scope
+
+  - package-ecosystem: docker
+    directory: /api
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: chore
+      include: scope
+
+  - package-ecosystem: docker
+    directory: /app
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: chore
+      include: scope
+
+  - package-ecosystem: docker
+    directory: /database
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: chore
+      include: scope
+
+  - package-ecosystem: docker
+    directory: /wifi
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: chore
+      include: scope
+
+  - package-ecosystem: docker
+    directory: /worker
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: chore
+      include: scope
 
   - package-ecosystem: github-actions
-    directory: /
+    directory: /.github/workflows
     schedule:
       interval: daily
+    commit-message:
+      prefix: chore
+      include: scope
 
   - package-ecosystem: npm
-    directory: /
+    directory: /app
     schedule:
       interval: daily
+    commit-message:
+      prefix: chore
+      include: scope
 
   - package-ecosystem: pip
-    directory: /
+    directory: /agent
     schedule:
       interval: daily
+    commit-message:
+      prefix: chore
+      include: scope
+
+  - package-ecosystem: pip
+    directory: /api
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: chore
+      include: scope
