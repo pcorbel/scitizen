@@ -57,6 +57,7 @@ services:
     labels:
       io.balena.features.dbus: 1
       io.balena.features.firmware: 1
-    privileged: true
+    cap_add:
+      - NET_ADMIN
     network_mode: host
     restart: always
