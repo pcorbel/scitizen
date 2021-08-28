@@ -16,12 +16,10 @@ COPY *.txt /tmp/
 # install system dependencies
 RUN apt-get update \
  && xargs apt-get install --no-install-recommends --assume-yes --quiet < /tmp/packages.txt \
- && xargs apt-get install --no-install-recommends --assume-yes --quiet < /tmp/build-packages.txt \
  # install wifi-connect
  && wget --quiet https://github.com/balena-io/wifi-connect/releases/download/v${WFC_VERSION}/wifi-connect-v${WFC_VERSION}-linux-%%BALENA_ARCH%%.tar.gz \
  && tar -xvzf wifi-connect-v${WFC_VERSION}-linux-%%BALENA_ARCH%%.tar.gz \
  # clean up
- && xargs apt-get --yes --purge --auto-remove remove < /tmp/build-packages.txt \
  && apt-get clean \
  && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
 
