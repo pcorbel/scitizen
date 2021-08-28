@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/pcorbel/scitizen/compare/v1.1.3...v1.1.4) (2021-08-28)
+
+
+### Bug Fixes
+
+* **worker:** :ambulance: fix worker internet connection check ([a6c66d7](https://github.com/pcorbel/scitizen/commit/a6c66d739c1c3de0e5c728d0a83aea244fd2001e))
+
 ## [1.1.3](https://github.com/pcorbel/scitizen/compare/v1.1.2...v1.1.3) (2021-08-27)
 
 
