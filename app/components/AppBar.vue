@@ -28,7 +28,7 @@
             <v-icon> mdi-checkbox-multiple-marked </v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title> Tasks </v-list-item-title>
+            <v-list-item-title> {{ $t('nav.tasks') }} </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
@@ -37,7 +37,7 @@
             <v-icon> mdi-book-multiple </v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title> Projects </v-list-item-title>
+            <v-list-item-title> {{ $t('nav.projects') }} </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
@@ -46,7 +46,7 @@
             <v-icon> mdi-raspberry-pi </v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title> Devices </v-list-item-title>
+            <v-list-item-title> {{ $t('nav.devices') }} </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
