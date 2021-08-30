@@ -1,7 +1,7 @@
 <template>
   <v-container class="ma-0 pa-0" fluid>
     <v-card flat>
-      <v-card-title> <v-icon> mdi-linux </v-icon> Device </v-card-title>
+      <v-card-title> <v-icon> mdi-linux </v-icon> {{ $t('devices.device.title') }} </v-card-title>
 
       <!-- The Device Data Table -->
       <v-data-table
@@ -22,7 +22,7 @@
 
       <v-divider />
 
-      <v-card-title> <v-icon> mdi-cpu-64-bit </v-icon> CPU </v-card-title>
+      <v-card-title> <v-icon> mdi-cpu-64-bit </v-icon> {{ $t('devices.cpu.title') }} </v-card-title>
 
       <!-- The CPU Data Table -->
       <v-data-table :headers="cpu_headers" :items="devices" hide-default-footer>
@@ -46,7 +46,7 @@
 
       <v-divider />
 
-      <v-card-title> <v-icon> mdi-harddisk </v-icon> Disk </v-card-title>
+      <v-card-title> <v-icon> mdi-harddisk </v-icon> {{ $t('devices.disk.title') }} </v-card-title>
 
       <!-- The Disk Data Table -->
       <v-data-table
@@ -66,27 +66,29 @@ export default {
   async fetch({ store }) {
     await store.dispatch('devices/fetch')
   },
-  data: () => ({
-    device_headers: [
-      { text: 'Name', value: 'name' },
-      { text: 'ID', value: 'id' },
-      { text: 'Type', value: 'type' },
-      { text: 'Operating System', value: 'operating_system_version' },
-      { text: 'BOINC Version', value: 'boinc_version' },
-      { text: 'Scitizen Version', value: 'scitizen_version' },
-    ],
-    cpu_headers: [
-      { text: 'Architecture', value: 'cpu_architecture' },
-      { text: 'Number of Processors', value: 'processor_count' },
-      { text: 'Operations per second', value: 'floating_point_speed' },
-      { text: 'Floating point operations per second', value: 'integer_speed' },
-    ],
-    disk_headers: [
-      { text: 'Total space', value: 'total_disk_space_humanized' },
-      { text: 'Free space', value: 'free_disk_space_humanized' },
-      { text: 'Swap space', value: 'swap_space_humanized' },
-    ],
-  }),
+  data() {
+    return {
+      device_headers: [
+        { text: this.$t('devices.device.name'), value: 'name' },
+        { text: this.$t('devices.device.id'), value: 'id' },
+        { text: this.$t('devices.device.type'), value: 'type' },
+        { text: this.$t('devices.device.operating_system_version'), value: 'operating_system_version' },
+        { text: this.$t('devices.device.boinc_version'), value: 'boinc_version' },
+        { text: this.$t('devices.device.scitizen_version'), value: 'scitizen_version' },
+      ],
+      cpu_headers: [
+        { text: this.$t('devices.cpu.cpu_architecture'), value: 'cpu_architecture' },
+        { text: this.$t('devices.cpu.processor_count'), value: 'processor_count' },
+        { text: this.$t('devices.cpu.floating_point_speed'), value: 'floating_point_speed' },
+        { text: this.$t('devices.cpu.integer_speed'), value: 'integer_speed' },
+      ],
+      disk_headers: [
+        { text: this.$t('devices.disk.total_disk_space_humanized'), value: 'total_disk_space_humanized' },
+        { text: this.$t('devices.disk.free_disk_space_humanized'), value: 'free_disk_space_humanized' },
+        { text: this.$t('devices.disk.swap_space_humanized'), value: 'swap_space_humanized' },
+      ],
+    }
+  },
   computed: {
     devices() {
       return this.$store.get('devices/devices')
@@ -94,7 +96,7 @@ export default {
   },
   head() {
     return {
-      title: 'Devices',
+      title: this.$t('nav.devices')
     }
   },
 }

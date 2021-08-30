@@ -1,7 +1,7 @@
 <template>
   <v-container class="ma-0 pa-0" fluid>
     <v-card flat>
-      <v-card-title> Tasks </v-card-title>
+      <v-card-title> {{ $t('nav.tasks') }} </v-card-title>
 
       <!-- The Data Table -->
       <v-data-table
@@ -76,7 +76,7 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title> Working Unit Name </v-list-item-title>
+            <v-list-item-title> {{ $t('tasks.name') }} </v-list-item-title>
             <v-list-item-subtitle>
               {{ selected.name }}
             </v-list-item-subtitle>
@@ -84,13 +84,13 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title> State </v-list-item-title>
+            <v-list-item-title> {{ $t('tasks.state') }} </v-list-item-title>
             <v-list-item-subtitle> {{ selected.state }} </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title> Active Task State </v-list-item-title>
+            <v-list-item-title> {{ $t('tasks.active_task_state') }} </v-list-item-title>
             <v-list-item-subtitle>
               {{ selected.active_task_state }}
             </v-list-item-subtitle>
@@ -98,7 +98,7 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title> Scheduler State </v-list-item-title>
+            <v-list-item-title> {{ $t('tasks.scheduler_state') }} </v-list-item-title>
             <v-list-item-subtitle>
               {{ selected.scheduler_state }}
             </v-list-item-subtitle>
@@ -106,7 +106,7 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title> Last Heartbeat </v-list-item-title>
+            <v-list-item-title> {{ $t('tasks.updated_at_humanized') }} </v-list-item-title>
             <v-list-item-subtitle>
               {{ selected.updated_at_humanized }}
             </v-list-item-subtitle>
@@ -114,7 +114,7 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title> Deadline </v-list-item-title>
+            <v-list-item-title> {{ $t('tasks.report_deadline_at_humanized') }} </v-list-item-title>
             <v-list-item-subtitle>
               {{ selected.report_deadline_at_humanized }}
             </v-list-item-subtitle>
@@ -122,7 +122,7 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title> Platform </v-list-item-title>
+            <v-list-item-title> {{ $t('tasks.platform') }} </v-list-item-title>
             <v-list-item-subtitle>
               {{ selected.platform }}
             </v-list-item-subtitle>
@@ -130,7 +130,7 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title> Exit Statement </v-list-item-title>
+            <v-list-item-title> {{ $t('tasks.exit_statement') }} </v-list-item-title>
             <v-list-item-subtitle>
               {{ selected.exit_statement }}
             </v-list-item-subtitle>
@@ -138,7 +138,7 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title> Exit Code </v-list-item-title>
+            <v-list-item-title> {{ $t('tasks.exit_code') }} </v-list-item-title>
             <v-list-item-subtitle>
               {{ selected.exit_code }}
             </v-list-item-subtitle>
@@ -146,7 +146,7 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title> Elapsed Time </v-list-item-title>
+            <v-list-item-title> {{ $t('tasks.elapsed_time_humanized') }} </v-list-item-title>
             <v-list-item-subtitle>
               {{ selected.elapsed_time_humanized }}
             </v-list-item-subtitle>
@@ -155,7 +155,7 @@
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title>
-              Remaining CPU Time (Estimated)
+              {{ $t('tasks.estimated_cpu_time_remaining_humanized') }}
             </v-list-item-title>
             <v-list-item-subtitle>
               {{ selected.estimated_cpu_time_remaining_humanized }}
@@ -164,7 +164,7 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title> Last Checkpoint CPU Time </v-list-item-title>
+            <v-list-item-title> {{ $t('tasks.checkpoint_cpu_time_humanized') }} </v-list-item-title>
             <v-list-item-subtitle>
               {{ selected.checkpoint_cpu_time_humanized }}
             </v-list-item-subtitle>
@@ -172,7 +172,7 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title> Slot </v-list-item-title>
+            <v-list-item-title> {{ $t('tasks.slot') }} </v-list-item-title>
             <v-list-item-subtitle>
               {{ selected.slot }}
             </v-list-item-subtitle>
@@ -180,7 +180,7 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title> Process ID </v-list-item-title>
+            <v-list-item-title> {{ $t('tasks.pid') }} </v-list-item-title>
             <v-list-item-subtitle>
               {{ selected.pid }}
             </v-list-item-subtitle>
@@ -188,7 +188,7 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title> Swap Size </v-list-item-title>
+            <v-list-item-title> {{ $t('tasks.swap_size_humanized') }} </v-list-item-title>
             <v-list-item-subtitle>
               {{ selected.swap_size_humanized }}
             </v-list-item-subtitle>
@@ -196,7 +196,7 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title> Set Size </v-list-item-title>
+            <v-list-item-title> {{ $t('tasks.set_size_humanized') }} </v-list-item-title>
             <v-list-item-subtitle>
               {{ selected.set_size_humanized }}
             </v-list-item-subtitle>
@@ -204,7 +204,7 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title> App Version </v-list-item-title>
+            <v-list-item-title> {{ $t('tasks.version_num') }} </v-list-item-title>
             <v-list-item-subtitle>
               {{ selected.version_num }}
             </v-list-item-subtitle>
@@ -220,23 +220,25 @@ export default {
   async fetch({ store }) {
     await store.dispatch('tasks/fetch')
   },
-  data: () => ({
-    headers: [
-      { text: 'Status', value: 'status' },
-      { text: 'Project', value: 'project_name' },
-      { text: 'ID', value: 'id' },
-      { text: 'Created At', value: 'received_at' },
-      { text: 'CPU Time', value: 'cpu_time' },
-      { text: 'Finished At', value: 'completed_at' },
-      { text: 'Progress', value: 'fraction_done' },
-    ],
-    options: {
-      sortBy: ['status.priority', 'received_at'],
-      sortDesc: [false, false],
-    },
-    polling: null,
-    selected: null,
-  }),
+  data() {
+    return {
+      headers: [
+        { text: this.$t('tasks.status'), value: 'status' },
+        { text: this.$t('tasks.project_name'), value: 'project_name' },
+        { text: this.$t('tasks.id'), value: 'id' },
+        { text: this.$t('tasks.received_at'), value: 'received_at' },
+        { text: this.$t('tasks.cpu_time'), value: 'cpu_time' },
+        { text: this.$t('tasks.completed_at'), value: 'completed_at' },
+        { text: this.$t('tasks.fraction_done'), value: 'fraction_done' },
+      ],
+      options: {
+        sortBy: ['status.priority', 'received_at'],
+        sortDesc: [false, false],
+      },
+      polling: null,
+      selected: null,
+    }
+  },
   created() {
     this.pollData()
   },
@@ -261,7 +263,7 @@ export default {
   },
   head() {
     return {
-      title: 'Tasks',
+      title: this.$t('nav.tasks'),
     }
   },
 }

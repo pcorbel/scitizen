@@ -46,11 +46,24 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    // https://i18n.nuxtjs.org
+    '@nuxtjs/i18n'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
+
+  // i18n module configuration: https://i18n.nuxtjs.org/basic-usage
+  i18n: {
+    locales: [{
+      code: 'en',
+      file: 'en.js'
+    }],
+    defaultLocale: 'en',
+    lazy: true,
+    langDir: 'locales/'
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
@@ -66,6 +79,7 @@ export default {
       }
     }
   },
+
   loading: {
     color: '#FFC107'
   },
