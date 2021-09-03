@@ -21,7 +21,7 @@ const actions = {
     const apiEndpoint = `${window.location.protocol}//${window.location.hostname}:8080/api`
     const project = JSON.parse(JSON.stringify(item))
     project.is_active = !project.is_active
-    await this.$axios.$post(`${apiEndpoint}/project/${project.id}`, project)
+    await this.$axios.$post(`${apiEndpoint}/projects/${project.id}`, project)
   }
 }
 

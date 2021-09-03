@@ -57,6 +57,7 @@ class App:
         self.scitizen.set_tasks(self.boinc.get_tasks())
         self.scitizen.set_tasks(self.boinc.get_old_tasks())
         self.scitizen.set_device(self.boinc.get_host_info())
+        self.scitizen.clean_tasks()
 
 
 if __name__ == "__main__":

@@ -7,7 +7,7 @@ export default {
   tasks: {
     name: 'Working Unit Name',
     status: 'Status',
-    project_name: 'Project',
+    project: 'Project',
     id: 'ID',
     received_at: 'Created At',
     cpu_time: 'CPU Time',

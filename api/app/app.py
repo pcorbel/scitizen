@@ -1,59 +1,282 @@
 # -*- coding: utf-8 -*-
 
-from db import db
-from flask import Blueprint, Flask, jsonify
-from flask_restx import Api
-from ma import ma
-from marshmallow import ValidationError
-from resources.device import Device, Devices, device_ns, devices_ns
-from resources.project import Project, Projects, project_ns, projects_ns
-from resources.task import Task, Tasks, task_ns, tasks_ns
+from typing import List
 
-# init Flask app
-app = Flask(__name__)
-blueprint = Blueprint("api", __name__, url_prefix="/api")
-api = Api(blueprint, doc="/doc", title="Scitizen API")
-app.register_blueprint(blueprint)
+from database import engine
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from models import Device, Project, Task, TaskWithProject
+from sqlmodel import Session, SQLModel, select
 
-# add namespaces to app
-api.add_namespace(device_ns)
-api.add_namespace(devices_ns)
-api.add_namespace(project_ns)
-api.add_namespace(projects_ns)
-api.add_namespace(task_ns)
-api.add_namespace(tasks_ns)
+# init fastapi
+app: FastAPI = FastAPI()
 
-# add resources to namespaces
-device_ns.add_resource(Device, "/<string:id>")
-devices_ns.add_resource(Devices, "")
-project_ns.add_resource(Project, "/<string:id>")
-projects_ns.add_resource(Projects, "")
-task_ns.add_resource(Task, "/<string:id>")
-tasks_ns.add_resource(Tasks, "")
+# init CORS
+app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"])
 
-# config SQLAlchemy
-app.config[
-    "SQLALCHEMY_DATABASE_URI"
-] = "postgresql://scitizen:scitizen@localhost:5432/scitizen"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["PROPAGATE_EXCEPTIONS"] = True
-db.init_app(app)
-ma.init_app(app)
+# mount api endpoint
+api: FastAPI = FastAPI(title="Scitizen")
+app.mount("/api", api)
 
 
-# init database
-@app.before_first_request
-def init_db():
-    db.create_all()
-    with open("./init.sql") as stream:
-        query = stream.read()
-    with db.engine.connect() as connection:
-        transaction = connection.begin()
-        connection.execute(query)
-        transaction.commit()
+@app.on_event("startup")
+def on_startup() -> None:
+    """Setup event on app.
+
+    It is used to create the database and the tables.
+    """
+
+    SQLModel.metadata.create_all(engine)
 
 
-# init error handling
-@api.errorhandler(ValidationError)
-def handle_validation_error(error):
-    return jsonify(error.messages), 400
+@api.post("/devices/{device_id}", response_model=Device)
+def upsert_device(device_id: str, device: Device) -> Device:
+    """Upsert a device.
+
+    It is used to create a device in the database if it does not already exists,
+    else it is used to update the existing one.
+
+    Args:
+      device_id:
+        The id of the device to upsert.
+      device:
+        The device data.
+
+    Returns:
+      The upserted device.
+    """
+
+    with Session(engine) as session:
+        # check if the device exists
+        statement = select(Device).where(Device.id == device_id)
+        result = session.exec(statement).first()
+
+        # if not, create it
+        if result is None:
+            result = device
+
+        # sync the data
+        for key, value in device.dict(exclude_unset=True).items():
+            setattr(result, key, value)
+
+        # persist the data to the database
+        session.add(result)
+        session.commit()
+        session.refresh(result)
+
+        return result
+
+
+@api.get("/devices/{device_id}", response_model=Device)
+def select_device(device_id: str):
+    """Select a device.
+
+    It is used to get a device data from the database.
+
+    Args:
+      device_id:
+        The id of the device to get the data from.
+
+    Returns:
+      The device data.
+    """
+
+    with Session(engine) as session:
+        statement = select(Device).where(Device.id == device_id)
+        result = session.exec(statement).first()
+        return result
+
+
+@api.get("/devices", response_model=List[Device])
+def select_devices():
+    """Select all devices.
+
+    It is used to get all devices data from the database.
+
+    Returns:
+      All devices data.
+    """
+
+    with Session(engine) as session:
+        statement = select(Device)
+        results = session.exec(statement).all()
+        return results
+
+
+@api.post("/projects/{project_id}", response_model=Project)
+def upsert_project(project_id: str, project: Project) -> Project:
+    """Upsert a project.
+
+    It is used to create a project in the database if it does not already exists,
+    else it is used to update the existing one.
+
+    Args:
+      project_id:
+        The id of the project to upsert.
+      project:
+        The project data.
+
+    Returns:
+      The upserted project.
+    """
+
+    with Session(engine) as session:
+        # check if the project exists
+        statement = select(Project).where(Project.id == project_id)
+        result = session.exec(statement).first()
+
+        # if not, create it
+        if result is None:
+            result = project
+
+        # sync the data
+        for key, value in project.dict(exclude_unset=True).items():
+            setattr(result, key, value)
+
+        # persist the data to the database
+        session.add(result)
+        session.commit()
+        session.refresh(result)
+
+        return result
+
+
+@api.get("/projects/{project_id}", response_model=Project)
+def select_project(project_id: str):
+    """Select a project.
+
+    It is used to get a project data from the database.
+
+    Args:
+      project_id:
+        The id of the project to get the data from.
+
+    Returns:
+      The project data.
+    """
+
+    with Session(engine) as session:
+        statement = select(Project).where(Project.id == project_id)
+        result = session.exec(statement).first()
+        return result
+
+
+@api.get("/projects", response_model=List[Project])
+def select_projects():
+    """Select all projects.
+
+    It is used to get all projects data from the database.
+
+    Returns:
+      All projects data.
+    """
+
+    with Session(engine) as session:
+        statement = select(Project)
+        results = session.exec(statement).all()
+        return results
+
+
+@api.post("/tasks/{task_id}", response_model=Task)
+def upsert_task(task_id: str, task: Task) -> Task:
+    """Upsert a task.
+
+    It is used to create a task in the database if it does not already exists,
+    else it is used to update the existing one.
+
+    Args:
+      task_id:
+        The id of the task to upsert.
+      task:
+        The task data.
+
+    Returns:
+      The upserted task.
+    """
+
+    with Session(engine) as session:
+        # check if the task exists
+        statement = select(Task).where(Task.id == task_id)
+        result = session.exec(statement).first()
+
+        # if not, create it
+        if result is None:
+            result = task
+
+        # sync the data
+        for key, value in task.dict(exclude_unset=True).items():
+            setattr(result, key, value)
+
+        # persist the data to the database
+        session.add(result)
+        session.commit()
+        session.refresh(result)
+
+        return result
+
+
+@api.get("/tasks/{task_id}", response_model=TaskWithProject)
+def select_task(task_id: str):
+    """Select a task.
+
+    It is used to get a task data from the database.
+
+    Args:
+      task_id:
+        The id of the task to get the data from.
+
+    Returns:
+      The task data.
+    """
+
+    with Session(engine) as session:
+        statement = select(Task, Project).join(Project).where(Task.id == task_id)
+        task, project = session.exec(statement).first()  # type: ignore
+        result = TaskWithProject()
+        for key, value in task.dict().items():
+            setattr(result, key, value)
+        result.project = project
+        return result
+
+
+@api.get("/tasks", response_model=List[TaskWithProject])
+def select_tasks():
+    """Select all tasks.
+
+    It is used to get all tasks data from the database.
+
+    Returns:
+      All tasks data.
+    """
+
+    with Session(engine) as session:
+        statement = select(Task, Project).join(Project)
+        results = session.exec(statement).all()
+        tasks = []
+        for task, project in results:
+            result = TaskWithProject()
+            for key, value in task.dict().items():
+                setattr(result, key, value)
+            result.project = project
+            tasks.append(result)
+        return tasks
+
+
+@api.put("/tasks/clean")
+def clean_tasks():
+    """Clean all tasks.
+
+    It is used to run maintenance queries on the database in order to keep
+    consistent data on tasks.
+    """
+
+    with Session(engine) as session:
+        with open("./data/clean_failed_tasks.sql", "r", encoding="utf-8") as stream:
+            statement = stream.read()
+        session.exec(statement)
+
+        with open("./data/clean_succeeded_tasks.sql", "r", encoding="utf-8") as stream:
+            statement = stream.read()
+        session.exec(statement)
+
+        session.commit()

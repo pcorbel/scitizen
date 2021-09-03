@@ -26,8 +26,8 @@
         </template>
 
         <!-- Template for Project -->
-        <template v-slot:item.project_name="{ item }">
-          <a :href="item.project_web_url"> {{ item.project_name }} </a>
+        <template v-slot:item.project="{ item }">
+          <a :href="item.project.web_url"> {{ item.project.name }} </a>
         </template>
 
         <!-- Template for ID -->
@@ -224,7 +224,7 @@ export default {
     return {
       headers: [
         { text: this.$t('tasks.status'), value: 'status' },
-        { text: this.$t('tasks.project_name'), value: 'project_name' },
+        { text: this.$t('tasks.project'), value: 'project' },
         { text: this.$t('tasks.id'), value: 'id' },
         { text: this.$t('tasks.received_at'), value: 'received_at' },
         { text: this.$t('tasks.cpu_time'), value: 'cpu_time' },

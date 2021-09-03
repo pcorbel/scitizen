@@ -18,10 +18,10 @@ services:
 
   api:
     build: ./api
-    depends_on:
-      - database
     ports:
       - 8080:8080
+    volumes:
+      - database-data:/app/data
     network_mode: host
     restart: always
 
@@ -31,15 +31,6 @@ services:
       - api
     ports:
       - 80:80
-    network_mode: host
-    restart: always
-
-  database:
-    build: ./database
-    ports:
-      - 5432:5432
-    volumes:
-      - database-data:/var/lib/postgresql/data
     network_mode: host
     restart: always
 

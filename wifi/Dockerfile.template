@@ -11,7 +11,7 @@ ENV PORTAL_LISTENING_PORT 8000
 ENV CHECK_FREQ 300
 
 # prepare dependencies files
-COPY *.txt /tmp/
+COPY packages.txt /tmp/packages.txt
 
 # install system dependencies
 RUN apt-get update \

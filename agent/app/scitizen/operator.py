@@ -23,6 +23,7 @@ class Operator:
     Methods:
         set_device: Set the device info
         set_tasks: Set all the running tasks.
+        clean_tasks: Run maintenance queries on the database.
         get_projects: Fetch all the projects available.
         set_projects: Set the state (enabled/disabled) of all the projects available.
     """
@@ -51,7 +52,9 @@ class Operator:
             The device data to send to the Scitizen API.
         """
 
-        self.session.post(url=f"{self.base_url}/device/{device.get('id')}", json=device)
+        self.session.post(
+            url=f"{self.base_url}/devices/{device.get('id')}", json=device
+        )
 
     def set_tasks(self, tasks: List[Dict[str, Any]]) -> None:
         """Send tasks to the Scitizen API.
@@ -64,7 +67,15 @@ class Operator:
         """
 
         for task in tasks:
-            self.session.post(url=f"{self.base_url}/task/{task.get('id')}", json=task)
+            self.session.post(url=f"{self.base_url}/tasks/{task.get('id')}", json=task)
+
+    def clean_tasks(self) -> None:
+        """Send maintenance order to the Scitizen API.
+
+        It is used to run maintenance queries on the database.
+        """
+
+        self.session.put(url=f"{self.base_url}/tasks/clean")
 
     def get_projects(self) -> List[str]:
         """Fetch projects from the Scitizen API.
@@ -90,5 +101,5 @@ class Operator:
 
         for project in projects:
             self.session.post(
-                url=f"{self.base_url}/project/{project.get('id')}", json=project
+                url=f"{self.base_url}/projects/{project.get('id')}", json=project
             )

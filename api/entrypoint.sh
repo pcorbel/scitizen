@@ -1,4 +1,4 @@
 #!/bin/sh
 
-# waiting for postgresql to be up and running then start the api
-bash /app/wait-for -t 60 localhost:5432 -- gunicorn --bind 0.0.0.0:8080 --timeout 120 wsgi:app
+# start the API server
+uvicorn --host 0.0.0.0 --port 8080 --timeout-keep-alive 120 --log-level warning app:app
