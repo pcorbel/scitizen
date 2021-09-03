@@ -291,7 +291,7 @@ class Operator:
         host.update({"cpid": result.get("host_cpid")})
         host.update({"cpu_type": result.get("p_model")})
         host.update({"cpu_architecture": result.get("p_vendor")})
-        host.update({"cpu_features": result.get("p_features").split()})
+        host.update({"cpu_features": result.get("p_features")})
         host.update({"processor_count": int(result.get("p_ncpus"))})
         host.update({"coprocessor_count": int(result.get("n_usable_coprocs"))})
         host.update({"product_name": result.get("product_name")})

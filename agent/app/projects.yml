@@ -13,7 +13,7 @@ projects:
     image: https://boinc.berkeley.edu/images/rosetta_at_home_logo.jpg
     keywords: 9 13 11 23 24 28 64
     name: Rosetta@home
-    platforms:
+    platforms: |
       - aarch64-unknown-linux-gnu
       - arm-android-linux-gnu
       - i686-pc-linux-gnu
@@ -41,7 +41,7 @@ projects:
     image: https://boinc.berkeley.edu/images/asteroids_logo.jpg
     keywords: 1 20 36 37
     name: Asteroids@home
-    platforms:
+    platforms: |
       - arm-android-linux-gnu[arm_android_non_pie]
       - arm-android-linux-gnu[arm_android_pie]
       - arm-unknown-linux-gnueabihf
@@ -100,7 +100,7 @@ projects:
     image: https://boinc.berkeley.edu/images/universe_at_home.png
     keywords: 1 20 43 57
     name: Universe@Home
-    platforms:
+    platforms: |
       - aarch64-unknown-linux-gnu
       - arm-android-linux-gnu[android_arm_pie]
       - arm-unknown-linux-gnueabihf
@@ -127,7 +127,7 @@ projects:
     image: https://boinc.berkeley.edu/images/einstein.jpg
     keywords: 1 4 3 59 26
     name: Einstein@home
-    platforms:
+    platforms: |
       - arm-android-linux-gnu[ASIMDPIE]
       - arm-android-linux-gnu[ASIMDPIE_1X]
       - arm-android-linux-gnu[ASIMDPIE_Beta]
@@ -191,7 +191,7 @@ projects:
     image: https://boinc.berkeley.edu/images/lhc.jpg
     keywords: 6 7 59 27
     name: LHC@home
-    platforms:
+    platforms: |
       - aarch64-android-linux-gnu
       - aarch64-android-linux-gnu[android]
       - aarch64-unknown-linux-gnu
@@ -235,7 +235,7 @@ projects:
     home: Cyber-Complex Foundation
     keywords: "15"
     name: iThena
-    platforms:
+    platforms: |
       - aarch64-unknown-linux-gnu
       - arm-unknown-linux-gnueabihf
       - windows_intelx86
@@ -258,7 +258,7 @@ projects:
     home: Karelian Research Center, Russian Academy of Sciences
     keywords: 15 20 44
     name: RakeSearch
-    platforms:
+    platforms: |
       - arm-unknown-linux-gnueabihf
       - e2k-linux-gnu
       - i686-pc-linux-gnu
@@ -283,7 +283,7 @@ projects:
     image: https://boinc.berkeley.edu/images/wcg.jpg
     keywords: 9 10 14 64 29 23 24
     name: World Community Grid
-    platforms:
+    platforms: |
       - i686-pc-linux-gnu
       - x86_64-pc-linux-gnu
       - windows_intelx86
@@ -308,7 +308,7 @@ projects:
     image: https://boinc.berkeley.edu/images/mlcathome-banner.png
     keywords: 16 23 24
     name: MLC@Home
-    platforms:
+    platforms: |
       - aarch64-unknown-linux-gnu
       - arm-unknown-linux-gnu
       - arm-unknown-linux-gnueabihf
@@ -334,7 +334,7 @@ projects:
     image: https://boinc.berkeley.edu/images/radioactive.jpg
     keywords: 34 20 43
     name: Radioactive@Home
-    platforms:
+    platforms: |
       - windows_intelx86
       - i686-pc-linux-gnu[nci]
       - arm-unknown-linux-gnueabi
@@ -357,7 +357,7 @@ projects:
     image: https://boinc.berkeley.edu/images/sidock.png
     keywords: 9 13 64 20 44
     name: SIDock@home
-    platforms:
+    platforms: |
       - x86_64-pc-linux-gnu
       - x86_64-apple-darwin
       - windows_x86_64
@@ -377,7 +377,7 @@ projects:
     home: Independent
     keywords: 15 32 20
     name: Amicable Numbers
-    platforms:
+    platforms: |
       - aarch64-unknown-linux-gnu[mt]
       - windows_x86_64[mt]
       - windows_x86_64[opencl_amd]

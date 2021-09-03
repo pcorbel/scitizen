@@ -4,7 +4,7 @@ FROM balenalib/%%BALENA_ARCH%%-debian-python:3.9.5-buster-run
 WORKDIR /app
 
 # prepare dependencies files
-COPY *.txt /tmp
+COPY packages.txt /tmp/packages.txt
 
 # install system dependencies
 RUN apt-get update \

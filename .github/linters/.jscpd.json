@@ -1,4 +1,4 @@
 {
     "threshold": 5,
-    "ignore": ["**/workflows/*.yml"]
+    "ignore": ["**/workflows/*.yml", "**/api/app/models.py"]
 }

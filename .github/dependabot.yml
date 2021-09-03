@@ -26,14 +26,6 @@ updates:
       include: scope
 
   - package-ecosystem: docker
-    directory: /database
-    schedule:
-      interval: daily
-    commit-message:
-      prefix: chore
-      include: scope
-
-  - package-ecosystem: docker
     directory: /wifi
     schedule:
       interval: daily
