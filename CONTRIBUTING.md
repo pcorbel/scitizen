@@ -4,6 +4,10 @@ First off, thank you for considering contributing to Scitizen 🔬.
 
 It is people like you that make Scitizen such a great project 🚀.
 
+## 📘 Getting familiar with the project architecture
+
+In order to get familiar with the architecture behind Scitizen, please read our [ARCHITECTURE](ARCHITECTURE.md) guide.
+
 ## 👨‍💻 Developing
 
 In order to develop locally, follow these steps 👇
