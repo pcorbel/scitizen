@@ -30,9 +30,9 @@
           <a :href="item.project.web_url"> {{ item.project.name }} </a>
         </template>
 
-        <!-- Template for ID -->
-        <template v-slot:item.id="{ item }">
-          <code> {{ item.id }} </code>
+        <!-- Template for UUID -->
+        <template v-slot:item.uuid="{ item }">
+          <code> {{ item.uuid }} </code>
         </template>
 
         <!-- Template for Created -->
@@ -225,7 +225,7 @@ export default {
       headers: [
         { text: this.$t('tasks.status'), value: 'status' },
         { text: this.$t('tasks.project'), value: 'project' },
-        { text: this.$t('tasks.id'), value: 'id' },
+        { text: this.$t('tasks.uuid'), value: 'uuid' },
         { text: this.$t('tasks.received_at'), value: 'received_at' },
         { text: this.$t('tasks.cpu_time'), value: 'cpu_time' },
         { text: this.$t('tasks.completed_at'), value: 'completed_at' },

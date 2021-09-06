@@ -8,7 +8,7 @@ export default {
     name: 'Working Unit Name',
     status: 'Status',
     project: 'Project',
-    id: 'ID',
+    uuid: 'UUID',
     received_at: 'Created At',
     cpu_time: 'CPU Time',
     completed_at: 'Finished At',
@@ -42,7 +42,7 @@ export default {
     device: {
       title: 'Device',
       name: 'Name',
-      id: 'ID',
+      uuid: 'UUID',
       type: 'Type',
       operating_system_version: 'Operating System',
       boinc_version: 'BOINC Version',
