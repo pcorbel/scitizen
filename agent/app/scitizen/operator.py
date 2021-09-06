@@ -67,7 +67,9 @@ class Operator:
         """
 
         for task in tasks:
-            self.session.post(url=f"{self.base_url}/tasks/{task.get('uuid')}", json=task)
+            self.session.post(
+                url=f"{self.base_url}/tasks/{task.get('uuid')}", json=task
+            )
 
     def clean_tasks(self) -> None:
         """Send maintenance order to the Scitizen API.

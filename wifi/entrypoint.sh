@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 sleep 15
 CHECK_FREQ=300
