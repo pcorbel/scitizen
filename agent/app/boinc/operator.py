@@ -129,7 +129,7 @@ class Operator:
             task: dict = {}
 
             # generate a uuid for the task
-            task.update({"id": utils.md5(result.get("name"))})
+            task.update({"uuid": utils.md5(result.get("name"))})
 
             # replace code state per human readable state
             task.update({"state": utils.get_result_state(result.get("state"))})
@@ -238,7 +238,7 @@ class Operator:
             task: dict = {}
 
             # generate a uuid for the task
-            task.update({"id": utils.md5(result.get("result_name"))})
+            task.update({"uuid": utils.md5(result.get("result_name"))})
 
             # add some generic data
             task.update({"active_task_state": "EXITED"})
@@ -282,7 +282,7 @@ class Operator:
             result = {}
 
         # add static data relative to the hardware
-        host.update({"id": os.getenv("BALENA_DEVICE_UUID")})
+        host.update({"uuid": os.getenv("BALENA_DEVICE_UUID")})
         host.update({"name": os.getenv("BALENA_DEVICE_NAME_AT_INIT")})
         host.update({"type": os.getenv("BALENA_DEVICE_TYPE")})
         host.update({"arch": os.getenv("BALENA_DEVICE_ARCH")})

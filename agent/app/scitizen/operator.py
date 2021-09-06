@@ -53,7 +53,7 @@ class Operator:
         """
 
         self.session.post(
-            url=f"{self.base_url}/devices/{device.get('id')}", json=device
+            url=f"{self.base_url}/devices/{device.get('uuid')}", json=device
         )
 
     def set_tasks(self, tasks: List[Dict[str, Any]]) -> None:
@@ -67,7 +67,7 @@ class Operator:
         """
 
         for task in tasks:
-            self.session.post(url=f"{self.base_url}/tasks/{task.get('id')}", json=task)
+            self.session.post(url=f"{self.base_url}/tasks/{task.get('uuid')}", json=task)
 
     def clean_tasks(self) -> None:
         """Send maintenance order to the Scitizen API.
@@ -101,5 +101,5 @@ class Operator:
 
         for project in projects:
             self.session.post(
-                url=f"{self.base_url}/projects/{project.get('id')}", json=project
+                url=f"{self.base_url}/projects/{project.get('uuid')}", json=project
             )

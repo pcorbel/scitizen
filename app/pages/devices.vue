@@ -14,9 +14,9 @@
           <v-chip label color="accent"> {{ item.name }} </v-chip>
         </template>
 
-        <!-- Template for ID -->
-        <template v-slot:item.id="{ item }">
-          <code> {{ item.id }} </code>
+        <!-- Template for UUID -->
+        <template v-slot:item.uuid="{ item }">
+          <code> {{ item.uuid }} </code>
         </template>
       </v-data-table>
 
@@ -70,7 +70,7 @@ export default {
     return {
       device_headers: [
         { text: this.$t('devices.device.name'), value: 'name' },
-        { text: this.$t('devices.device.id'), value: 'id' },
+        { text: this.$t('devices.device.uuid'), value: 'uuid' },
         { text: this.$t('devices.device.type'), value: 'type' },
         { text: this.$t('devices.device.operating_system_version'), value: 'operating_system_version' },
         { text: this.$t('devices.device.boinc_version'), value: 'boinc_version' },

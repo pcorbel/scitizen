@@ -13,7 +13,7 @@ class Device(SQLModel, table=True):  # type: ignore
     """
 
     # setup the primary key of the table
-    id: str = Field(primary_key=True)
+    uuid: str = Field(primary_key=True)
 
     # setup the columns / properties
     name: Optional[str]
@@ -52,7 +52,7 @@ class Project(SQLModel, table=True):  # type: ignore
     """
 
     # setup the primary key of the table
-    id: str = Field(primary_key=True)
+    uuid: str = Field(primary_key=True)
 
     # setup the columns / properties
     name: Optional[str]
@@ -90,7 +90,7 @@ class Task(SQLModel, table=True):  # type: ignore
     """
 
     # setup the primary key of the table
-    id: str = Field(primary_key=True)
+    uuid: str = Field(primary_key=True)
 
     # setup the columns / properties
     active_task_state: Optional[str]
