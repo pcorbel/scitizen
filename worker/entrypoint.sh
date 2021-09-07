@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # launch boinc in the background
 service boinc-client start > /dev/null 2>&1
@@ -7,7 +7,7 @@ service boinc-client start > /dev/null 2>&1
 while true; do 
   service boinc-client status | grep "Status of BOINC core client: running." > /dev/null 2>&1
   RESULT=$?
-  if [ ${RESULT} -eq 0 ]; then
+  if [[ ${RESULT} -eq 0 ]]; then
     break
   else
     echo "BOINC core client is not started yet..."

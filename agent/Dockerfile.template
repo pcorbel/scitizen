@@ -19,6 +19,7 @@ RUN apt-get update \
  && xargs apt-get install --no-install-recommends --assume-yes --quiet < /tmp/build-packages.txt \
  # install wait-for 
  && wget --quiet https://raw.githubusercontent.com/eficode/wait-for/${WAITFOR_VERSION}/wait-for \
+ && chmod +x /app/wait-for \
  # install python dependencies
  && pip install --no-cache-dir -r /tmp/requirements.txt \
  # clean up
