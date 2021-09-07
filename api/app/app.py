@@ -29,16 +29,16 @@ def on_startup() -> None:
     SQLModel.metadata.create_all(engine)
 
 
-@api.post("/devices/{device_id}", response_model=Device)
-def upsert_device(device_id: str, device: Device) -> Device:
+@api.post("/devices/{device_uuid}", response_model=Device)
+def upsert_device(device_uuid: str, device: Device) -> Device:
     """Upsert a device.
 
     It is used to create a device in the database if it does not already exists,
     else it is used to update the existing one.
 
     Args:
-      device_id:
-        The id of the device to upsert.
+      device_uuid:
+        The uuid of the device to upsert.
       device:
         The device data.
 
@@ -48,7 +48,7 @@ def upsert_device(device_id: str, device: Device) -> Device:
 
     with Session(engine) as session:
         # check if the device exists
-        statement = select(Device).where(Device.id == device_id)
+        statement = select(Device).where(Device.uuid == device_uuid)
         result = session.exec(statement).first()
 
         # if not, create it
@@ -67,22 +67,22 @@ def upsert_device(device_id: str, device: Device) -> Device:
         return result
 
 
-@api.get("/devices/{device_id}", response_model=Device)
-def select_device(device_id: str):
+@api.get("/devices/{device_uuid}", response_model=Device)
+def select_device(device_uuid: str):
     """Select a device.
 
     It is used to get a device data from the database.
 
     Args:
-      device_id:
-        The id of the device to get the data from.
+      device_uuid:
+        The uuid of the device to get the data from.
 
     Returns:
       The device data.
     """
 
     with Session(engine) as session:
-        statement = select(Device).where(Device.id == device_id)
+        statement = select(Device).where(Device.uuid == device_uuid)
         result = session.exec(statement).first()
         return result
 
@@ -103,16 +103,16 @@ def select_devices():
         return results
 
 
-@api.post("/projects/{project_id}", response_model=Project)
-def upsert_project(project_id: str, project: Project) -> Project:
+@api.post("/projects/{project_uuid}", response_model=Project)
+def upsert_project(project_uuid: str, project: Project) -> Project:
     """Upsert a project.
 
     It is used to create a project in the database if it does not already exists,
     else it is used to update the existing one.
 
     Args:
-      project_id:
-        The id of the project to upsert.
+      project_uuid:
+        The uuid of the project to upsert.
       project:
         The project data.
 
@@ -122,7 +122,7 @@ def upsert_project(project_id: str, project: Project) -> Project:
 
     with Session(engine) as session:
         # check if the project exists
-        statement = select(Project).where(Project.id == project_id)
+        statement = select(Project).where(Project.uuid == project_uuid)
         result = session.exec(statement).first()
 
         # if not, create it
@@ -141,22 +141,22 @@ def upsert_project(project_id: str, project: Project) -> Project:
         return result
 
 
-@api.get("/projects/{project_id}", response_model=Project)
-def select_project(project_id: str):
+@api.get("/projects/{project_uuid}", response_model=Project)
+def select_project(project_uuid: str):
     """Select a project.
 
     It is used to get a project data from the database.
 
     Args:
-      project_id:
-        The id of the project to get the data from.
+      project_uuid:
+        The uuid of the project to get the data from.
 
     Returns:
       The project data.
     """
 
     with Session(engine) as session:
-        statement = select(Project).where(Project.id == project_id)
+        statement = select(Project).where(Project.uuid == project_uuid)
         result = session.exec(statement).first()
         return result
 
@@ -177,16 +177,16 @@ def select_projects():
         return results
 
 
-@api.post("/tasks/{task_id}", response_model=Task)
-def upsert_task(task_id: str, task: Task) -> Task:
+@api.post("/tasks/{task_uuid}", response_model=Task)
+def upsert_task(task_uuid: str, task: Task) -> Task:
     """Upsert a task.
 
     It is used to create a task in the database if it does not already exists,
     else it is used to update the existing one.
 
     Args:
-      task_id:
-        The id of the task to upsert.
+      task_uuid:
+        The uuid of the task to upsert.
       task:
         The task data.
 
@@ -196,7 +196,7 @@ def upsert_task(task_id: str, task: Task) -> Task:
 
     with Session(engine) as session:
         # check if the task exists
-        statement = select(Task).where(Task.id == task_id)
+        statement = select(Task).where(Task.uuid == task_uuid)
         result = session.exec(statement).first()
 
         # if not, create it
@@ -215,22 +215,22 @@ def upsert_task(task_id: str, task: Task) -> Task:
         return result
 
 
-@api.get("/tasks/{task_id}", response_model=TaskWithProject)
-def select_task(task_id: str):
+@api.get("/tasks/{task_uuid}", response_model=TaskWithProject)
+def select_task(task_uuid: str):
     """Select a task.
 
     It is used to get a task data from the database.
 
     Args:
-      task_id:
-        The id of the task to get the data from.
+      task_uuid:
+        The uuid of the task to get the data from.
 
     Returns:
       The task data.
     """
 
     with Session(engine) as session:
-        statement = select(Task, Project).join(Project).where(Task.id == task_id)
+        statement = select(Task, Project).join(Project).where(Task.uuid == task_uuid)
         task, project = session.exec(statement).first()  # type: ignore
         result = TaskWithProject()
         for key, value in task.dict().items():
