@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/pcorbel/scitizen/compare/v1.1.4...v1.1.5) (2021-09-08)
+
+
+### Bug Fixes
+
+* **api:** :ambulance: fix orm mapping ([0179794](https://github.com/pcorbel/scitizen/commit/01797943d70401189022860e2f13cd9dbb946899))
+
 ## [1.1.4](https://github.com/pcorbel/scitizen/compare/v1.1.3...v1.1.4) (2021-08-28)
 
 
