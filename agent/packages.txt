@@ -1,2 +1,2 @@
-curl
-netcat
+curl=7.64.0-4+deb10u2
+netcat=1.10-41.1

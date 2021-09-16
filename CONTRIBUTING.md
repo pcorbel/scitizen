@@ -8,9 +8,11 @@ It is people like you that make Scitizen such a great project 🚀.
 
 In order to get familiar with the architecture behind Scitizen, please read our [ARCHITECTURE](ARCHITECTURE.md) guide.
 
-## 👨‍💻 Developing
+## 👨‍💻 Developing on a local device
 
-In order to develop locally, follow these steps 👇
+The best way to extensively test the behavior of Scitizen is to test it directly on a physical device (like a Raspberry Pi).
+
+In order to develop on a local device, follow these steps 👇
 
 ### 1️⃣ Setup your repository
 
@@ -23,11 +25,13 @@ You can find the installation instructions [here](https://github.com/balena-io/b
 ### 3️⃣ List all device types that are supported
 
 Run the command
+
 ```bash
 balena devices supported
 ```
 
 Example of output
+
 ```bash
 SLUG                                   ALIASES                ARCH    NAME
 asus-tinker-board                                             armv7hf Asus Tinker Board
@@ -73,11 +77,13 @@ Then, find the SLUG matching your device (in our example, we'll take `raspberryp
 ### 4️⃣ Find the latest development version (.dev) available for your device
 
 Run the command
+
 ```bash
 balena os versions raspberrypi4-64
 ```
 
 Example of output
+
 ```bash
 v2.80.5+rev1.prod (recommended)
 v2.80.5+rev1.dev
@@ -98,11 +104,13 @@ Then, find the latest development version (.dev) version (in our example, we'll 
 ### 5️⃣ Download the latest development version (.dev) available for your device
 
 Run the command
+
 ```bash
 balena os download raspberrypi4-64 --output scitizen-os-dev.img --version v2.80.5+rev1.dev
 ```
 
 Example of output
+
 ```bash
 Getting device operating system for raspberrypi4-64
 Downloading Device OS 2.80.5+rev1.dev [========================] 100% eta 0s  
@@ -112,11 +120,13 @@ The image was downloaded successfully
 ### 6️⃣ Configure the image
 
 Run the command
+
 ```bash
 sudo balena local configure scitizen-os-dev.img
 ```
 
 Example of output
+
 ```bash
 ? Network SSID My_Wifi_Ssid
 ? Network Key super_secret_wifi_password
@@ -132,11 +142,13 @@ If you need Wi-Fi, you can also set it up here.
 ### 7️⃣ Plug-in your micro-SD card and find the drive
 
 Run the command
+
 ```bash
 balena util available-drives
 ```
 
 Example of output
+
 ```bash
 DEVICE     SIZE    DESCRIPTION
 /dev/disk2 31.9 GB Generic STORAGE DEVICE Media
@@ -147,11 +159,13 @@ In our example, the drive is `/dev/disk2`.
 ### 8️⃣ Flash the image
 
 Run the command
+
 ```bash
 sudo balena local flash scitizen-os-dev.img --drive /dev/disk2
 ```
 
 Example of output
+
 ```bash
 ? This will erase the selected drive. Are you sure? Yes
 Flashing [========================] 100% eta 0s
@@ -165,11 +179,13 @@ Validating [========================] 100% eta 0s
 ### 🔟 Scan your network for your device
 
 Run the command
+
 ```bash
 sudo balena scan
 ```
 
 Example of output
+
 ```bash
 Scanning for local balenaOS devices... Reporting scan results
 - 
@@ -197,17 +213,18 @@ In our example, the device hostname is `scitizen.local`.
 ### 1️⃣1️⃣ Push Scitizen on your device and start a live session
 
 Run the command
+
 ```bash
 balena push scitizen.local
 ```
 
 Example of output
+
 ```bash
 [Info]    Starting build on device 192.168.0.25
 [Build]   [agent]    [==================================================>]  100.0MB/100.0MB
 [Build]   [api]      [==================================================>]  100.0MB/100.0MB
 [Build]   [app]      [==================================================>]  100.0MB/100.0MB
-[Build]   [database] [==================================================>]  100.0MB/100.0MB
 [Build]   [wifi]     [==================================================>]  100.0MB/100.0MB
 [Build]   [worker]   [==================================================>]  100.0MB/100.0MB
 [Info]    Streaming device logs...
@@ -224,16 +241,114 @@ Congratulations 🎉! You now have a live session where every changes you apply 
 ### Optional: connect to your device via SSH
 
 To connect to the Host OS, run the command
+
 ```bash
 balena ssh scitizen.local
 ```
 
 To connect to a specific service, run the command
+
 ```bash
 balena ssh scitizen.local <service>
 ```
 
 Example: `balena ssh scitizen.local app`
+
+## 👨‍💻 Developing without a local device
+
+It is also possible to contribute to Scitizen even if you do not have access to a physical device like a Raspberry Pi.
+
+We will use a container image to emulate the Host OS.
+
+In order to develop without a local device, follow these steps 👇
+
+### 1️⃣ Setup your repository
+
+[Fork](https://help.github.com/articles/fork-a-repo/) this repository to your own GitHub account and then [clone](https://help.github.com/articles/cloning-a-repository/) it to your local device.
+
+### 2️⃣ Install `balena-cli`
+
+You can find the installation instructions [here](https://github.com/balena-io/balena-cli/blob/master/INSTALL.md).
+
+### 3️⃣ Emulate Scitizen Host OS
+
+Run the command
+
+```bash
+docker run \
+--name scitizen_os \
+--detach \
+--interactive \
+--tty \
+--privileged \
+--network host \
+--restart always \
+--tmpfs /run,/run/lock,/tmp,/var/lib/journal,/sys/fs/cgroup/systemd \
+--volume /lib/modules:/lib/modules:ro \
+ghcr.io/pcorbel/scitizen/development-os:latest
+```
+
+### 4️⃣ Scan your network for your device
+
+Run the command
+
+```bash
+balena scan
+```
+
+Example of output
+
+```bash
+Scanning for local balenaOS devices... Reporting scan results
+- 
+  host:          f88f3cb.local
+  address:       10.128.0.3
+  osVariant:     development
+  dockerInfo: 
+    Containers:        1
+    ContainersRunning: 1
+    ContainersPaused:  0
+    ContainersStopped: 0
+    Images:            2
+    Driver:            overlay2
+    SystemTime:        2021-09-15T12:42:14.121444495Z
+    KernelVersion:     4.19.0-17-cloud-amd64
+    OperatingSystem:   balenaOS 2.83.18+rev1 (containerized)
+    Architecture:      x86_64
+  dockerVersion: 
+    Version:    19.03.24
+    ApiVersion: 1.40
+```
+
+In our example, the device address is `10.128.0.3`.
+
+### 1️⃣1️⃣ Push Scitizen on your device and start a live session
+
+Run the command
+
+```bash
+balena push 10.128.0.3
+```
+
+Example of output
+
+```bash
+[Info]    Starting build on device 10.128.0.3
+[Build]   [agent]    [==================================================>]  100.0MB/100.0MB
+[Build]   [api]      [==================================================>]  100.0MB/100.0MB
+[Build]   [app]      [==================================================>]  100.0MB/100.0MB
+[Build]   [wifi]     [==================================================>]  100.0MB/100.0MB
+[Build]   [worker]   [==================================================>]  100.0MB/100.0MB
+[Info]    Streaming device logs...
+[Live]    Watching for file changes...
+[Live]    Waiting for device state to settle...
+[Live]    Device state settled
+[Logs]    [1/1/2021, 12:00:00] [app] Hello World!
+...
+[Logs]    [1/1/2021, 14:00:00] [app] Goodbye World!
+```
+
+Congratulations 🎉! You now have a live session where every changes you apply on the code will be build and pushed to your device.
 
 ## 🙏 Open a pull request
 
