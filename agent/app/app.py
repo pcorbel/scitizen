@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import os
 import time
 from dataclasses import dataclass
 
 import schedule
-import yaml  # type: ignore
 from balena.operator import Operator as Balena
 from boinc.operator import Operator as Boinc
 from scitizen.operator import Operator as Scitizen
@@ -35,10 +33,7 @@ class App:
         Seed the project table, check the hostname, set the schedule interval and
         run the agent
         """
-        with open(f"{os.path.dirname(os.path.abspath(__file__))}/projects.yml") as file:
-            projects = yaml.load(file, Loader=yaml.SafeLoader).get("projects")
-            self.scitizen.set_projects(projects)
-
+        self.scitizen.set_projects()
         self.balena.set_hostname("scitizen")
 
         schedule.every(30).seconds.do(self.job)

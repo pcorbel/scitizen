@@ -35,6 +35,7 @@ class Device(SQLModel, table=True):  # type: ignore
     operating_system_version: Optional[str]
     boinc_version: Optional[str]
     scitizen_version: Optional[str]
+    platform: Optional[str]
 
     # setup the pseudo-columns (metadata related to the record)
     created_at: Optional[datetime] = Field(

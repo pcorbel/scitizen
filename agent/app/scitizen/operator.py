@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any, Dict, List
 
 import requests
+import utils
+import xmltodict
+import yaml
 
 
 @dataclass
@@ -19,13 +23,14 @@ class Operator:
         host: The name of the Scitizen API host.
         port: The port of the Scitizen API host.
         session: A session to improve performance.
+        config: The path to the config file.
 
     Methods:
         set_device: Set the device info
         set_tasks: Set all the running tasks.
         clean_tasks: Run maintenance queries on the database.
         get_projects: Fetch all the projects available.
-        set_projects: Set the state (enabled/disabled) of all the projects available.
+        set_projects: Set all the BOINC projects.
     """
 
     base_url: str = ""
@@ -33,6 +38,7 @@ class Operator:
     host: str = "localhost"
     port: int = 8080
     session: requests.Session = requests.Session()
+    config: str = f"{(Path(__file__).parent).resolve()}/projects.yml"
 
     def __post_init__(self) -> None:
         """Initialize the Operator.
@@ -91,15 +97,31 @@ class Operator:
 
         return self.session.get(url=f"{self.base_url}/projects").json()
 
-    def set_projects(self, projects: List[Dict[str, Any]]) -> None:
+    def set_projects(self) -> None:
         """Send projects to the Scitizen API.
 
-        It is used to update the Scitizen data with data coming from the BOINC Client.
-
-        Args:
-          projects:
-            The list of projects to send to the Scitizen API.
+        It is used to fetch the official project list from the BOINC API,
+        complete them with some Scitizen relative configs (like avatars and weak authenticators)
+        and send them to the Scitizen API for persistence.
         """
+
+        # load scitizen config
+        with open(self.config) as file:
+            config = yaml.load(file, Loader=yaml.SafeLoader).get("projects")
+
+        # fetch official project list
+        response = requests.get("https://boinc.berkeley.edu/project_list.php")
+        projects = xmltodict.parse(response.text).get("projects").get("project")
+
+        # iterate over official project and override config
+        for project in projects:
+            uuid: str = utils.md5(project.get("id"))
+            project.update({"uuid": uuid})
+            project.update({"platforms": str(project.get("platforms").get("name"))})
+            project.update({"avatar": config.get(uuid, {}).get("avatar")})
+            project.update(
+                {"weak_authenticator": config.get(uuid, {}).get("weak_authenticator")}
+            )
 
         for project in projects:
             self.session.post(
