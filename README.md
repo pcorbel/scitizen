@@ -26,6 +26,7 @@ So let's start contributing 💪!
 1️⃣ Download the latest image of Scitizen OS on the [Release page](https://github.com/pcorbel/scitizen/releases)
 
 2️⃣ Open BalenaEtcher
+
 * Click on the `Flash from file` button.
 * Select the Scitizen OS image file you downloaded in 1️⃣.
 * Click on the `Select target` button.
@@ -42,6 +43,7 @@ Depending on your internet connection, it could take up to 10 minutes to fully b
 ![Power it up tutorial](docs/assets/power-it-up.gif)
 
 4️⃣ If your Raspberry Pi is **not** connected to the Internet via ethernet 🔌
+
 * A Wi-Fi hotspot named `Scitizen` will appear on your network list (computer or smartphone)
 * Connect to it (there is no password)
 * While connected to it, open [http://192.168.42.1:8000](http://192.168.42.1:8000)

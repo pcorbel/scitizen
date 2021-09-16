@@ -38,7 +38,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://github.com/nuxt-community/vuetify-module
-    '@nuxtjs/vuetify',
+    ['@nuxtjs/vuetify', { treeShake: true }],
     // https://github.com/nuxt-community/moment-module
     '@nuxtjs/moment'
   ],
@@ -86,6 +86,8 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    analyze: true,
+    extractCSS: true,
     babel: {
       plugins: [['@babel/plugin-proposal-private-property-in-object', { loose: true }]]
     }

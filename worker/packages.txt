@@ -1,2 +1,2 @@
 boinc-client=7.14.2+dfsg-3
-procps
+procps=2:3.3.15-2
