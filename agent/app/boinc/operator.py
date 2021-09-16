@@ -7,7 +7,7 @@ from hashlib import md5
 from pathlib import Path
 from typing import Any, Dict, List
 
-import boinc.utils as utils
+import utils
 from jinja2 import Template
 from xmltodict import parse
 
@@ -274,8 +274,8 @@ class Operator:
         host: dict = {}
 
         # fetch data from the BOINC client and parse it
-        reply = self._send_request(name="get_host_info")
-        result = utils.deep_get(reply, "boinc_gui_rpc_reply.host_info")
+        reply = self._send_request(name="get_state")
+        result = utils.deep_get(reply, "boinc_gui_rpc_reply.client_state.host_info")
 
         # hack to handle no results
         if result is None:
@@ -305,19 +305,27 @@ class Operator:
         host.update({"domain_name": result.get("domain_name")})
 
         # fetch data from the BOINC client and parse it
-        reply = self._send_request(name="exchange_versions")
-        result = utils.deep_get(reply, "boinc_gui_rpc_reply.server_version")
-
-        # hack to handle no results
-        if result is None:
-            result = {}
+        major = utils.deep_get(
+            reply, "boinc_gui_rpc_reply.client_state.core_client_major_version"
+        )
+        minor = utils.deep_get(
+            reply, "boinc_gui_rpc_reply.client_state.core_client_minor_version"
+        )
+        release = utils.deep_get(
+            reply, "boinc_gui_rpc_reply.client_state.core_client_release"
+        )
 
         # add static data relative to the software
-        host.update(
-            {
-                "boinc_version": f"{result.get('major')}.{result.get('minor')}.{result.get('release')}"
-            }
+        host.update({"boinc_version": f"{major}.{minor}.{release}"})
+
+        # fetch data from the BOINC client and parse it
+        reply = self._send_request(name="get_state")
+        platform = utils.deep_get(
+            reply, "boinc_gui_rpc_reply.client_state.platform_name"
         )
+
+        # add static data relative to the software
+        host.update({"platform": platform})
 
         return host
 
