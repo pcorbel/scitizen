@@ -1,5 +1,5 @@
-import { make } from 'vuex-pathify'
 import prettyBytes from 'pretty-bytes'
+import { make } from 'vuex-pathify'
 
 function state () {
   return { items: [] }

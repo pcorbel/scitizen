@@ -1,6 +1,6 @@
-import { make } from 'vuex-pathify'
 import moment from 'moment-timezone'
 import prettyBytes from 'pretty-bytes'
+import { make } from 'vuex-pathify'
 
 function state () {
   return { items: [] }

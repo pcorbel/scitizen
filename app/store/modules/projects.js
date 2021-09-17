@@ -30,7 +30,7 @@ const getters = {
 
   projects (state) {
     let projects = JSON.parse(JSON.stringify(state.items))
-    projects = projects.filter(project => project.weak_authenticator);
+    projects = projects.filter(project => project.weak_authenticator)
     return projects
   }
 }
