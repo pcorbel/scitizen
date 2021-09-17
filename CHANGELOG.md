@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/pcorbel/scitizen/compare/v1.1.5...v1.2.0) (2021-09-17)
+
+
+### Features
+
+* ✨ fetch projects directly from BOINC ([c2e1a65](https://github.com/pcorbel/scitizen/commit/c2e1a6571e8ace02ef2388c88a5b310b481e7ab0))
+
 ## [1.1.5](https://github.com/pcorbel/scitizen/compare/v1.1.4...v1.1.5) (2021-09-08)
 
 
