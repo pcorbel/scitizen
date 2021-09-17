@@ -67,7 +67,7 @@ export default {
   },
   computed: {
     projects() {
-      return this.$store.get('projects/items')
+      return this.$store.get('projects/projects')
     },
   },
   head() {

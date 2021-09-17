@@ -26,7 +26,13 @@ const actions = {
 }
 
 const getters = {
-  ...make.getters(state)
+  ...make.getters(state),
+
+  projects (state) {
+    let projects = JSON.parse(JSON.stringify(state.items))
+    projects = projects.filter(project => project.weak_authenticator);
+    return projects
+  }
 }
 
 export default {
