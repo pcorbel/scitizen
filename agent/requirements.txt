@@ -1,4 +1,4 @@
-jinja2==3.0.2
+jinja2==3.0.3
 pyyaml==5.4.1
 requests==2.26.0
 schedule==1.1.0
