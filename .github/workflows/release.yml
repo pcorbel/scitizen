@@ -131,7 +131,7 @@ jobs:
           key: scitizen-os-raspberrypi3-64.img.zip
 
       - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v2.5.4
+        uses: cycjimmy/semantic-release-action@v3.2.0
         with:
           semantic_version: 17.4.4
           extra_plugins: |
