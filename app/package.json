@@ -12,7 +12,7 @@
     "@nuxtjs/axios": "5.13.6",
     "@nuxtjs/i18n": "7.0.3",
     "@nuxtjs/moment": "1.6.1",
-    "core-js": "3.18.2",
+    "core-js": "3.27.0",
     "moment-timezone": "0.5.33",
     "nuxt": "2.15.8",
     "pretty-bytes": "5.6.0",
